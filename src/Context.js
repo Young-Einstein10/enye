@@ -32,6 +32,7 @@ const LocationProvider = ({ children }) => {
   };
 
   const geocodeAddress = async () => {
+    setHospitalData([]);
     showLoader(true);
     try {
       const results = await getGeocode({ address });
