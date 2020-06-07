@@ -3,12 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/combobox": "^0.10.3",
+    "@react-google-maps/api": "^1.9.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.3.1",
+    "date-fns": "^2.14.0",
+    "http-proxy-middleware": "^1.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.4.1"
+    "react-geocode": "^0.2.1",
+    "react-google-autocomplete": "^1.2.6",
+    "react-google-maps": "^9.4.5",
+    "react-scripts": "3.4.1",
+    "use-places-autocomplete": "^1.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,6 +28,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "https://maps.googleapis.com/maps/api",
   "browserslist": {
     "production": [
       ">0.2%",

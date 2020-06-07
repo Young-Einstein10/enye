@@ -1,0 +1,802 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CrQCJwEAAPYeur-k7XKk2h0dEXp4fWefdVINuGMzB2JYDiCkrf9NV7QutRQpPSYU64imdk9rVgKe9NrUi7QcZEc8DG0PCqFoKNNQDcYlmpzsG1mCYgP62-bYJOdzXGWj-6jjimY2_5HvWOzqMNz3nc3quMZTQw1zlI21HqXBjrUok086WtFaBKXASMvN28fRy12v-227ojczTBZZtKWFsFVm9MZuQgk_etXSWjx7HYo0Gp_oIHmZpZSo2MP4LrrQRNJEWpXcz-gHttAZ29TDsFG6B4OQIZgcjxMzxUVd8JhFcRpILkv4QcjhYJwq2UBRCgFi28yxPrZF36Gw7t11n_tlgrZBtcS8DX5YJ248s8E1txz3jmHbYPDwhEyl9prdKfXvYOkWegSqBeFLBW0G83REOAUjcTMSEGoIfh5LPzGqaZJZduzQ1s0aFL6kCqnbOun_i709TmnWFgCpor5n",
+  "results": [
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.62137,
+          "lng": 3.5157183
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.622752029892721,
+            "lng": 3.517060029892722
+          },
+          "southwest": {
+            "lat": 6.620052370107278,
+            "lng": 3.514360370107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "1021d0bd221a70eca0eaca84f159870c5d06ae94",
+      "name": "Dele Medical Hospital",
+      "opening_hours": {},
+      "place_id": "ChIJjQ0nJpLuOxARnlhLthE59BA",
+      "plus_code": {
+        "compound_code": "JGC8+G7 Ikorodu",
+        "global_code": "6FR5JGC8+G7"
+      },
+      "rating": 4,
+      "reference": "ChIJjQ0nJpLuOxARnlhLthE59BA",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 3,
+      "vicinity": "Rasheed Abiodun Oladosu St, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.607145900000001,
+          "lng": 3.4922052
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.608507629892721,
+            "lng": 3.493584379892722
+          },
+          "southwest": {
+            "lat": 6.605807970107277,
+            "lng": 3.490884720107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "504267279703731ecee9240e9f5a78576520b02c",
+      "name": "Hopewell Hospital Ltd",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1712,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116991742308998146813\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAAAspIqHX4Jyr7rGTE8DqnnNGQkBrjMef5GNLDtifsgz9edyGFC47iJmpMzMPS35WRjR-sdRX6eEGzccDutURzBsmmv6tz2siuiajqn8K0A_es_cx0wjDpbjy9EGrsN1v9EhBpI7nj2wzKnX5psp7dxjCJGhSloUVjAU3jBArH5EHby3qF1Gj0vQ",
+          "width": 2560
+        }
+      ],
+      "place_id": "ChIJz5BE6NLtOxARz1ZtAdRsrNA",
+      "plus_code": {
+        "compound_code": "JF4R+VV Ikorodu",
+        "global_code": "6FR5JF4R+VV"
+      },
+      "rating": 3.5,
+      "reference": "ChIJz5BE6NLtOxARz1ZtAdRsrNA",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 4,
+      "vicinity": "3, Badiru Kassen Street, off Abraham Oke Street, Ebute Ipakodo Rd, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.624924699999999,
+          "lng": 3.4899937
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.626243379892721,
+            "lng": 3.491338729892723
+          },
+          "southwest": {
+            "lat": 6.623543720107278,
+            "lng": 3.488639070107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "8df16289b25b8081b40abde13700a78cc5298c35",
+      "name": "Oak Hospitals",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2160,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/115524148786017608524\">Abayomi Abiru</a>"
+          ],
+          "photo_reference": "CmRaAAAA7HnKxal19Y8v2EP7vFPefAIHoPw8RSjlsIFC3RBTsWIPBJdKAMCgtPY0lADJbEQOZ_P1AWDBPGhH6X9_BCB6_QnUjvHakv_rLt23o83mynbjxolJ4ZQNEVLQaIq0xYtWEhBbZ1QCMaeUeG2pDpTvv_VLGhTnmFiFy9AE6H1VeCBZ4CyQeRM9IQ",
+          "width": 3840
+        }
+      ],
+      "place_id": "ChIJSfpoPDnsOxARBKghf1WMfWs",
+      "plus_code": {
+        "compound_code": "JFFQ+XX Ikorodu",
+        "global_code": "6FR5JFFQ+XX"
+      },
+      "rating": 3.5,
+      "reference": "ChIJSfpoPDnsOxARBKghf1WMfWs",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 49,
+      "vicinity": "191 Lagos Ikorodu Express Road, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.608653299999999,
+          "lng": 3.4993333
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.610060529892722,
+            "lng": 3.500581229892722
+          },
+          "southwest": {
+            "lat": 6.607360870107279,
+            "lng": 3.497881570107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "28cc0b85640c786afa32fe3a5d2faed2f24da380",
+      "name": "General Hospital Ikorodu",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2988,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/115546361800753359393\">Emeka Ulor</a>"
+          ],
+          "photo_reference": "CmRaAAAAlwe87TxVADhUsXi3QyG8ccxuWnQLV79w44qmWrVP00OWQzwqlQ5pxtCbSosFxN_DT-w7JLxGbiKekH2JhMyJOIsQO2VO2HfTsqPc2fsqPQV8R1LGQpiNlGaUwoFccVqIEhDCll5T19Z0gFjLJH6pUi5PGhQScXTkSijwEmUHiZelACV4Ig9Ukw",
+          "width": 5312
+        }
+      ],
+      "place_id": "ChIJa0CeS9XtOxARfb0gss-A7v4",
+      "plus_code": {
+        "compound_code": "JF5X+FP Ikorodu",
+        "global_code": "6FR5JF5X+FP"
+      },
+      "rating": 3.5,
+      "reference": "ChIJa0CeS9XtOxARfb0gss-A7v4",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 42,
+      "vicinity": "Oba Sekumade Rd, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6220181,
+          "lng": 3.4984491
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.623379929892722,
+            "lng": 3.499769629892723
+          },
+          "southwest": {
+            "lat": 6.620680270107278,
+            "lng": 3.497069970107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "d6dd2dbac1ad653535835b23ecba2c72ff535c92",
+      "name": "Jobi clinic and maternity hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2160,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111997313342180249900\">Olanrewaju Amusa</a>"
+          ],
+          "photo_reference": "CmRaAAAAHh_9ZKNnlgo181_F9CNBOZFJdFN-0O1b_X_uS0lri_RhsEysVSULe90F-wVEEhBjixJXd6Udmg2oSGRYD-fvMHNMDMDlQfADFy-cJdJ7FnsY3-71J9FL_EH618OpZGpoEhC1Z2C3D0aBRVAo_BY5dk4EGhQOIb1KqdNQFPKQbBNfCjJ0EQZDeQ",
+          "width": 2880
+        }
+      ],
+      "place_id": "ChIJX_pYrifsOxAR4jcPmMF-E6A",
+      "plus_code": {
+        "compound_code": "JFCX+R9 Lagos",
+        "global_code": "6FR5JFCX+R9"
+      },
+      "rating": 1.8,
+      "reference": "ChIJX_pYrifsOxAR4jcPmMF-E6A",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 4,
+      "vicinity": "3/5 Adeyeri Owuyo St, Off Lagos road, Lagos"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6106532,
+          "lng": 3.5016577
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.611989429892722,
+            "lng": 3.503036129892723
+          },
+          "southwest": {
+            "lat": 6.609289770107278,
+            "lng": 3.500336470107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "b6c0aa30b238ba1f034a75795aff1326ab365fbf",
+      "name": "Esiri Specialist Hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "place_id": "ChIJlXNUENTtOxAR_6OHcfdrZlY",
+      "plus_code": {
+        "compound_code": "JG62+7M Ikorodu",
+        "global_code": "6FR5JG62+7M"
+      },
+      "rating": 0,
+      "reference": "ChIJlXNUENTtOxAR_6OHcfdrZlY",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "Matti St, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6230368,
+          "lng": 3.4968177
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.624382379892721,
+            "lng": 3.498179529892722
+          },
+          "southwest": {
+            "lat": 6.621682720107278,
+            "lng": 3.495479870107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "58e8d827137c301623b6ae09b57bcd2b550205a6",
+      "name": "Newgate Hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 4160,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111685616828890926051\">anita ajah</a>"
+          ],
+          "photo_reference": "CmRZAAAAm678Sx58eyeqxSqBQtlWsehArWWa5svc6Uw0m2clKIeXlE7O8uVVJTylayS6GNTZUQYaOs31gi2fI8dqzHJQ4jMREIKPegJ6RfrPiHjG9b4TIfInfZwPWHjDk_ijbGBgEhAoPHHscza_Fd0IyieTMZUJGhTG3tBRROq6doVk9EXfIkkhOptIfw",
+          "width": 2336
+        }
+      ],
+      "place_id": "ChIJl0iK6SbsOxARo2aR3HYy-RA",
+      "plus_code": {
+        "compound_code": "JFFW+6P Ikorodu",
+        "global_code": "6FR5JFFW+6P"
+      },
+      "rating": 3.7,
+      "reference": "ChIJl0iK6SbsOxARo2aR3HYy-RA",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 22,
+      "vicinity": "59 Lagos Rd, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.621756800000001,
+          "lng": 3.5027886
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.623138379892722,
+            "lng": 3.504152329892722
+          },
+          "southwest": {
+            "lat": 6.620438720107278,
+            "lng": 3.501452670107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "22056492b508a3b6d41b2fa352bae014ee31daeb",
+      "name": "Real Hope Hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "place_id": "ChIJFxmeH3DpOxARiJwFhdGZ59Q",
+      "plus_code": {
+        "compound_code": "JGC3+P4 Ikorodu",
+        "global_code": "6FR5JGC3+P4"
+      },
+      "rating": 0,
+      "reference": "ChIJFxmeH3DpOxARiJwFhdGZ59Q",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "kilometers 3, Ikorodu-shagamu express way, ita-oluwo bus stop, Ogijo, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.612216099999999,
+          "lng": 3.5125585
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.613505829892723,
+            "lng": 3.513882929892723
+          },
+          "southwest": {
+            "lat": 6.610806170107279,
+            "lng": 3.511183270107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "48ca2384b01dc05005455d91045412c40d379e90",
+      "name": "Amodu Adesola Memorial Hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1184,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117035681048388356945\">Amoo Ilerioluwa</a>"
+          ],
+          "photo_reference": "CmRaAAAAdlYjXbVgKEPX2GuQnOcNICYZD8DuK6NQvQM5GVWRFU4J6-XKHlQ3_goi657T64eiRHsteV6vS6NJ_Fw23mSSyD0olC3JHaicRJcNjoAFAqdWc2uNnmEaxnSAyBy1l7JmEhDwN9eIhv6vMVNtf8r4hU-KGhSQF2Y3gHM2OGkXuNnzfpIP1STvSg",
+          "width": 1080
+        }
+      ],
+      "place_id": "ChIJASHx5IjuOxARIBblFPpoP4Q",
+      "plus_code": {
+        "compound_code": "JG67+V2 Ikorodu",
+        "global_code": "6FR5JG67+V2"
+      },
+      "rating": 4,
+      "reference": "ChIJASHx5IjuOxARIBblFPpoP4Q",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 2,
+      "vicinity": "5 Anibaba Alley, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6217869,
+          "lng": 3.5135886
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.623143879892721,
+            "lng": 3.514933079892723
+          },
+          "southwest": {
+            "lat": 6.620444220107277,
+            "lng": 3.512233420107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "5e7077c7e3b9e16f12d38728b2bcd44fb2d46073",
+      "name": "The Ark Hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 780,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/112129676956510998750\">Adesoji Akinlade</a>"
+          ],
+          "photo_reference": "CmRaAAAA4YWPMVXPxyc2CkD4E_3rGU7asm7hFeDICd-gwf7u3Ywwl2L3YyfQYFNgRlqV4RDzfbmkYYKJiXWpEy5IyFk2hHQGCRF92p2qVWZVwR0KHrd5GTZfNLOS2liCoLqg529cEhCyD6hVtA5umSCK_mc79u6mGhRwFO2Fvx9yAWN5dXFroYFjsxDZ3Q",
+          "width": 1040
+        }
+      ],
+      "place_id": "ChIJNfKOuJruOxARdMg668yTTV8",
+      "plus_code": {
+        "compound_code": "JGC7+PC Ikorodu",
+        "global_code": "6FR5JGC7+PC"
+      },
+      "rating": 3,
+      "reference": "ChIJNfKOuJruOxARdMg668yTTV8",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 1,
+      "vicinity": "52 Kokoro Abu St, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.631818,
+          "lng": 3.5088
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.633174179892722,
+            "lng": 3.510156279892722
+          },
+          "southwest": {
+            "lat": 6.630474520107278,
+            "lng": 3.507456620107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "a786f45d5ad926d0f53e1551aba16da130c89f6a",
+      "name": "Rodes Hospital",
+      "opening_hours": {},
+      "place_id": "ChIJ3em97qLuOxARfp9QNp0DMb0",
+      "plus_code": {
+        "compound_code": "JGJ5+PG Ikorodu",
+        "global_code": "6FR5JGJ5+PG"
+      },
+      "rating": 0,
+      "reference": "ChIJ3em97qLuOxARfp9QNp0DMb0",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.623194799999999,
+          "lng": 3.502671
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.624529279892721,
+            "lng": 3.504051429892722
+          },
+          "southwest": {
+            "lat": 6.621829620107277,
+            "lng": 3.501351770107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "3e610c3c61288564ba62f24e05ada567f80d7ce8",
+      "name": "Ikorodu Hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "place_id": "ChIJ42B98crvOxARPKDrHeybdZ8",
+      "plus_code": {
+        "compound_code": "JGF3+73 Lagos",
+        "global_code": "6FR5JGF3+73"
+      },
+      "rating": 0,
+      "reference": "ChIJ42B98crvOxARPKDrHeybdZ8",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "9 Munirat, Alaje Ave, Lagos"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.617909699999999,
+          "lng": 3.5085013
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.619196779892722,
+            "lng": 3.509771429892722
+          },
+          "southwest": {
+            "lat": 6.616497120107278,
+            "lng": 3.507071770107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "58aa23622ed479395ce10abfc6ee99d9bb421378",
+      "name": "Ajayi Medical Center",
+      "opening_hours": {
+        "open_now": true
+      },
+      "place_id": "ChIJHcKNm4XuOxARJsRbi44cX0Y",
+      "plus_code": {
+        "compound_code": "JG95+5C Ikorodu",
+        "global_code": "6FR5JG95+5C"
+      },
+      "rating": 4.2,
+      "reference": "ChIJHcKNm4XuOxARJsRbi44cX0Y",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 12,
+      "vicinity": "50 Eluku St, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6220645,
+          "lng": 3.4975979
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.623444229892722,
+            "lng": 3.498960829892722
+          },
+          "southwest": {
+            "lat": 6.620744570107278,
+            "lng": 3.496261170107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "30aedaa7fd69424a1630b853ce2f473f7043883f",
+      "name": "Shanu Medical Centre",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 684,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117051302977809010002\">A Google User</a>"
+          ],
+          "photo_reference": "CmRaAAAAaUiB2f3MD8bWYjRb-SI3SqG_jFww74PI8Yw0XqjNWzMvBNzqcFeDaF2vZMWzqYb9zxd-xtgRmcSNKvqWEai-gAm74KA0unNwuwhvlKegcf20jN1Bdmo11f2o3NQ5cGnYEhDVkLxtuxuGIpAPeqnl3DPpGhT09ios4qSN5l8qgzCfHK7AoptFyQ",
+          "width": 1216
+        }
+      ],
+      "place_id": "ChIJgyJjyAztOxARrez1fndnq2Q",
+      "plus_code": {
+        "compound_code": "JFCX+R2 Ikorodu",
+        "global_code": "6FR5JFCX+R2"
+      },
+      "rating": 5,
+      "reference": "ChIJgyJjyAztOxARrez1fndnq2Q",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 1,
+      "vicinity": "8, Dada Apena close, by UBA,, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6194131,
+          "lng": 3.5104537
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.620820579892722,
+            "lng": 3.511884929892722
+          },
+          "southwest": {
+            "lat": 6.618120920107278,
+            "lng": 3.509185270107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "9bd48dec7762dd64f01d99a955c9b24dac6c6d05",
+      "name": "Triumph Hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "place_id": "ChIJdbk_43zvOxARWqSrtRk_WMc",
+      "plus_code": {
+        "compound_code": "JG96+Q5 Lagos",
+        "global_code": "6FR5JG96+Q5"
+      },
+      "rating": 0,
+      "reference": "ChIJdbk_43zvOxARWqSrtRk_WMc",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "14 A Otunubi St, Lagos"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.622844799999999,
+          "lng": 3.5037645
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.624213979892721,
+            "lng": 3.504969779892722
+          },
+          "southwest": {
+            "lat": 6.621514320107277,
+            "lng": 3.502270120107277
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "6bc408b86bb6a06ba29ce70c175e437bddb8fba3",
+      "name": "Med-in Specialists hospital",
+      "place_id": "ChIJ73bxgt_vOxARMqm0nz0ceIU",
+      "plus_code": {
+        "compound_code": "JGF3+4G Lagos",
+        "global_code": "6FR5JGF3+4G"
+      },
+      "rating": 0,
+      "reference": "ChIJ73bxgt_vOxARMqm0nz0ceIU",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "1/3 Oshogbo St, Lagos"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6244571,
+          "lng": 3.49521
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.625739679892721,
+            "lng": 3.496533329892723
+          },
+          "southwest": {
+            "lat": 6.623040020107277,
+            "lng": 3.493833670107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "b8c5f3a324edb8d9ca1216e875d15ed9dd2ede22",
+      "name": "Ire-Any Hospital",
+      "photos": [
+        {
+          "height": 4608,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/108391037116457435691\">Ifeoma Ceciia Anakor</a>"
+          ],
+          "photo_reference": "CmRaAAAA2GzDJOiNLM-itWeapqOMWbksXdo7MQ9Xg1e5Y3u6OJ75I_T2bwzrFQUvjMZVhZIF3-KUhBNVxpsZ6POEHToDiWbKkRWlOG2oKeKvEcqc2OmODR_cYVPOm1qknJ-Ei42eEhAVjLi5byCcqRwMAs8W7x8BGhToGiHih9TvFYWlaHFGdz9vHjO28g",
+          "width": 3456
+        }
+      ],
+      "place_id": "ChIJsUyD_KDtOxAR1m4kuWqcAjw",
+      "plus_code": {
+        "compound_code": "JFFW+Q3 Ikorodu",
+        "global_code": "6FR5JFFW+Q3"
+      },
+      "rating": 0,
+      "reference": "ChIJsUyD_KDtOxAR1m4kuWqcAjw",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "92 Ikorodu Rd, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6089726,
+          "lng": 3.5050607
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.610372179892721,
+            "lng": 3.506354129892722
+          },
+          "southwest": {
+            "lat": 6.607672520107277,
+            "lng": 3.503654470107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "9669fa2b15f608b990410cb659f0a11c2e69c2fb",
+      "name": "King o' David hospital",
+      "opening_hours": {
+        "open_now": true
+      },
+      "place_id": "ChIJ5caMgwXvOxARVmtOhATkt_w",
+      "plus_code": {
+        "compound_code": "JG54+H2 Ikorodu",
+        "global_code": "6FR5JG54+H2"
+      },
+      "rating": 0,
+      "reference": "ChIJ5caMgwXvOxARVmtOhATkt_w",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "13 Ladejobi Ita-Aleje St, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6241544,
+          "lng": 3.5017617
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.625507879892722,
+            "lng": 3.503101629892722
+          },
+          "southwest": {
+            "lat": 6.622808220107278,
+            "lng": 3.500401970107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "e843dc3c5dfc13bb96b68cf025dcefa6b2860afe",
+      "name": "Calvary Hospital",
+      "place_id": "ChIJm0Iq3Z3uOxARJUOFk0AISOo",
+      "plus_code": {
+        "compound_code": "JGF2+MP Ikorodu",
+        "global_code": "6FR5JGF2+MP"
+      },
+      "rating": 0,
+      "reference": "ChIJm0Iq3Z3uOxARJUOFk0AISOo",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "Jimoh Odu St, Ikorodu"
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "geometry": {
+        "location": {
+          "lat": 6.6317689,
+          "lng": 3.5135136
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 6.633128479892722,
+            "lng": 3.514961229892723
+          },
+          "southwest": {
+            "lat": 6.630428820107278,
+            "lng": 3.512261570107278
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+      "id": "a14024d937270cd52501389f9fb675e434dff712",
+      "name": "Helping Hands Hospital",
+      "opening_hours": {},
+      "place_id": "ChIJJYEZPSfvOxARiG-k7ze0KE0",
+      "plus_code": {
+        "compound_code": "JGJ7+PC Ikorodu",
+        "global_code": "6FR5JGJ7+PC"
+      },
+      "rating": 0,
+      "reference": "ChIJJYEZPSfvOxARiG-k7ze0KE0",
+      "scope": "GOOGLE",
+      "types": ["hospital", "health", "point_of_interest", "establishment"],
+      "user_ratings_total": 0,
+      "vicinity": "Unnamed Road, Ikorodu"
+    }
+  ],
+  "status": "OK"
+}
