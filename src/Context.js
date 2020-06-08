@@ -65,13 +65,14 @@ const LocationProvider = ({ children }) => {
         if (hospitals.status === "OK") {
           // setAddressState("");
           showLoader(false);
-          setHospitalData([...hospitalData, ...hospitals.results]);
+          setHospitalData([...hospitals.results]);
         }
 
         if (hospitals.status === "OK" && hospitals.next_page_token) {
           // setAddressState("");
           showLoader(false);
           setNextPageToken(hospitals.next_page_token);
+           setHospitalData([...hospitals.results]);
         }
       } else {
         console.log("Coordinates Not Present");
