@@ -4,18 +4,18 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { API_KEY } from "./config";
 import axios from "axios";
 
-type ContextProps = {
+interface ContextProps {
   loader: boolean;
   error: any;
   nextPageToken: string;
   hospitalData: any;
-  showLoader: any;
+  showLoader: (action: boolean) => void;
   radius: number;
-  setGeoRadius: any;
-  findHospital: any;
-  setAddressState: any;
-  geocodeAddress: any;
-};
+  setGeoRadius?: (value: number) => void;
+  findHospital?: (lat: number, lng: number) => void;
+  setAddressState?: (newAddress: string) => void;
+  geocodeAddress?: () => void;
+}
 
 const locationContext = React.createContext<Partial<ContextProps>>({});
 
@@ -23,17 +23,35 @@ type Props = {
   children: React.ReactNode;
 };
 
+type Coords = {
+  lat: number;
+  lng: number;
+};
+
+type Location = {
+  location?: Coords | null;
+};
+
+interface HospitalData {
+  id: string;
+  rating: number | null;
+  icon?: string;
+  vicinity: string | any;
+  business_status: string;
+  geometry: Location;
+}
+
 const LocationProvider = ({ children }: Props) => {
-  const [coordinates, setCoordinates] = React.useState({
+  const [coordinates, setCoordinates] = React.useState<Coords>({
     lat: 0,
     lng: 0,
   });
   const [address, setAddress] = React.useState<string>("");
-  const [radius, setRadius] = React.useState(10 * 1000);
-  const [hospitalData, setHospitalData] = React.useState<any>([]);
+  const [radius, setRadius] = React.useState<number>(10 * 1000);
+  const [hospitalData, setHospitalData] = React.useState<HospitalData[]>([]);
   const [nextPageToken, setNextPageToken] = React.useState<string>("");
   const [loader, setLoader] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<any>(null);
+  const [error, setError] = React.useState<any | null>(null);
 
   const setAddressState = (newAddress: string) => {
     setAddress(newAddress);

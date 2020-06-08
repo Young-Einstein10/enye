@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, FunctionComponent } from "react";
 import { List, Space } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
@@ -6,16 +6,21 @@ import { LoadingOutlined } from "@ant-design/icons";
 import locationContext from "./Context";
 // const hospitalData = hospitals.results;
 
+type ICON = {
+  icon: any | null;
+  text: string | null;
+};
+
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
-const IconText = ({ icon, text }) => (
+const IconText: FunctionComponent<ICON> = ({ icon, text }): JSX.Element => (
   <Space>
     {React.createElement(icon)}
     {text}
   </Space>
 );
 
-const ListView = () => {
+const ListView: FunctionComponent = () => {
   const context = useContext(locationContext);
   const { hospitalData, loader, error } = context;
 

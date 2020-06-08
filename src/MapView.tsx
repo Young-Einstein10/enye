@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, FunctionComponent } from "react";
 import {
   GoogleMap,
   Marker,
@@ -6,12 +6,9 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
-// import * as hospitals from "./hospitals.json";
 import locationContext from "./Context";
 
 import { API_KEY } from "./config";
-
-// const hospitalData = hospitals.results;
 
 const mapContainerStyle = {
   width: "100vw",
@@ -26,12 +23,18 @@ const options = {
   zoomControl: true,
 };
 
-const MapView = () => {
-  const [mapCenter, setMapCenter] = useState({
+interface MapCenter {
+  lat: number;
+  lng: number;
+}
+
+const MapView: FunctionComponent = () => {
+  const [mapCenter, setMapCenter] = useState<MapCenter>({
     lat: -33.8670522,
     lng: 151.1957362,
   });
-  const [selectedHospital, setSelectedHospital] = useState(null);
+  const [selectedHospital, setSelectedHospital] = useState<any | null>(null);
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: API_KEY,
     libraries,
@@ -52,7 +55,7 @@ const MapView = () => {
         center={mapCenter}
       >
         {/* Markers */}
-        {hospitalData.map((marker) => (
+        {hospitalData.map((marker: any) => (
           <Marker
             key={marker.id}
             position={{

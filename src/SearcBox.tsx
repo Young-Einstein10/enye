@@ -1,18 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, FunctionComponent } from "react";
 // USe-Paces-AUtocomplte
+import locationContext from "./Context";
 import usePlacesAutoComplete from "use-places-autocomplete";
+import { AutoComplete } from "antd";
 import { Select } from "antd";
 
-import locationContext from "./Context";
-
-import { AutoComplete } from "antd";
+type HandleChange = {
+  fn: () => void;
+};
 
 const { Option } = AutoComplete;
 
-const Search = () => {
-  // Radius in KM
-  // const [radiusVal, setRadiusVal] = useState(10);
-
+const Search: FunctionComponent = () => {
   const context = useContext(locationContext);
   const { setGeoRadius, setAddressState, geocodeAddress } = context;
 
@@ -24,13 +23,10 @@ const Search = () => {
     clearSuggestions,
   } = usePlacesAutoComplete();
 
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-    setGeoRadius(value);
-  }
+  const handleChange = (value: number | any): void => setGeoRadius(value);
 
   return (
-    <>
+    <React.Fragment>
       <div className="searchBar">
         <AutoComplete
           style={{
@@ -84,7 +80,7 @@ const Search = () => {
           Search
         </button>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

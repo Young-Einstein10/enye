@@ -1,14 +1,16 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import Main from "./Main";
 import "antd/dist/antd.css";
 import "./style.css";
 
-function App() {
+const style: React.CSSProperties = { height: "100vh" };
+
+const App: FunctionComponent = () => {
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={style}>
       <Main />
     </div>
   );
-}
+};
 
 export default App;

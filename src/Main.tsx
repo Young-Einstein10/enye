@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import SearchBox from "./SearcBox";
 import ListView from "./ListView";
@@ -12,7 +12,7 @@ const { Header, Footer, Content } = Layout;
 const { TabPane } = Tabs;
 const libraries = ["places"];
 
-const Main = () => {
+const Main: FunctionComponent = () => {
   return (
     <LoadScript googleMapsApiKey={API_KEY} libraries={libraries}>
       <LocationProvider>
@@ -30,12 +30,10 @@ const Main = () => {
               // onChange={callback}
             >
               <TabPane tab="Tab 1" key="1">
-                {/* List View */}
                 <ListView />
               </TabPane>
 
               <TabPane tab="Tab 2" key="2">
-                {/* Map View */}
                 <MapView />
               </TabPane>
             </Tabs>
