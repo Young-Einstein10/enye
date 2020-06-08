@@ -54,7 +54,11 @@ const LocationProvider = ({ children }) => {
     try {
       if (lat && lng) {
         const response = await fetch(
-          `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=hospital&keyword=hospital&key=${API_KEY}`
+          `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=hospital&keyword=hospital&key=${API_KEY}`, {
+            headers: {
+              origin: null,
+            },
+          }
         );
         const hospitals = await response.json();
         console.log(hospitals);
