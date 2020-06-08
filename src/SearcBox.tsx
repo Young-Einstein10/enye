@@ -39,13 +39,13 @@ const Search = () => {
           }}
           // onSearch={handleSearch}
           value={value}
-          onSelect={async address => {
+          onSelect={async (address) => {
             // console.log(address);
             setValue(address, false);
             setAddressState(address);
             clearSuggestions();
           }}
-          onChange={e => {
+          onChange={(e) => {
             // console.log(e);
             setValue(e);
             setAddressState(e);
@@ -79,7 +79,6 @@ const Search = () => {
           onClick={() => {
             geocodeAddress();
           }}
-          type="search"
           className="search-hospital-btn"
         >
           Search

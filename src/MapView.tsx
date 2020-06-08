@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   GoogleMap,
   Marker,
@@ -6,10 +6,12 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
-import * as hospitals from "./hospitals.json";
+// import * as hospitals from "./hospitals.json";
+import locationContext from "./Context";
+
 import { API_KEY } from "./config";
 
-const hospitalData = hospitals.results;
+// const hospitalData = hospitals.results;
 
 const mapContainerStyle = {
   width: "100vw",
@@ -35,8 +37,11 @@ const MapView = () => {
     libraries,
   });
 
-  if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading Maps";
+  const context = useContext(locationContext);
+  const { hospitalData } = context;
+
+  if (loadError) return <p>Error loading maps</p>;
+  if (!isLoaded) return <p>Loading Maps</p>;
 
   return (
     <div>
@@ -47,7 +52,7 @@ const MapView = () => {
         center={mapCenter}
       >
         {/* Markers */}
-        {hospitalData.map(marker => (
+        {hospitalData.map((marker) => (
           <Marker
             key={marker.id}
             position={{

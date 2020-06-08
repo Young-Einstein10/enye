@@ -17,7 +17,7 @@ const IconText = ({ icon, text }) => (
 
 const ListView = () => {
   const context = useContext(locationContext);
-  const { hospitalData, loader, nextPageToken, error } = context;
+  const { hospitalData, loader, error } = context;
 
   const data = hospitalData;
 
@@ -46,7 +46,7 @@ const ListView = () => {
         }}
         // loading="true"
         dataSource={data}
-        renderItem={(hospital) => (
+        renderItem={(hospital: any) => (
           <List.Item
             className="hospital__list-item"
             key={hospital.id}
@@ -75,11 +75,6 @@ const ListView = () => {
           </List.Item>
         )}
       />
-      {/* {nextPageToken ? (
-        <div style={{ justifyContent: "center" }}>
-          <Button type="primary">Load More</Button>
-        </div>
-      ) : null} */}
     </>
   );
 };
