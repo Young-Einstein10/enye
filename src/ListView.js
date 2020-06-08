@@ -74,11 +74,11 @@ const ListView = () => {
           </List.Item>
         )}
       />
-      {nextPageToken ? (
-        <div style={{ justifyContent: "center" }}>
-          <Button type="primary">Load More</Button>
-        </div>
-      ) : null}
+//       {nextPageToken ? (
+//         <div style={{ justifyContent: "center" }}>
+//           <Button type="primary">Load More</Button>
+//         </div>
+//       ) : null}
     </>
   );
 };
