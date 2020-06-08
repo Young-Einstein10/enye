@@ -34,6 +34,7 @@ const LocationProvider = ({ children }) => {
   };
 
   const geocodeAddress = async () => {
+    setHospitalData([]);
     showLoader(true);
     // Clear Hospital Data
     // if (hospitalData.length !== 0) {
