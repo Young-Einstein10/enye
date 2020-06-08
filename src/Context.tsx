@@ -1,31 +1,53 @@
-import React, { useState, createContext } from "react";
+// import React, { useState, createContext, useEffect } from "react";
+import * as React from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { API_KEY } from "./config";
-const locationContext = createContext();
+import axios from "axios";
 
-const initState = [];
+type ContextProps = {
+  loader: boolean;
+  error: any;
+  nextPageToken: string;
+  hospitalData: any;
+  showLoader: any;
+  radius: number;
+  setGeoRadius: any;
+  findHospital: any;
+  setAddressState: any;
+  geocodeAddress: any;
+};
 
-const LocationProvider = ({ children }) => {
-  const [coordinates, setCoordinates] = useState({
-    lat: "",
-    lng: "",
+const locationContext = React.createContext<Partial<ContextProps>>({});
+
+type Props = {
+  children: React.ReactNode;
+};
+
+const LocationProvider = ({ children }: Props) => {
+  const [coordinates, setCoordinates] = React.useState({
+    lat: 0,
+    lng: 0,
   });
-  const [address, setAddress] = useState("");
-  const [radius, setRadius] = useState(10 * 1000);
-  const [hospitalData, setHospitalData] = useState(initState);
-  const [nextPageToken, setNextPageToken] = useState("");
-  const [loader, setLoader] = useState(false);
-  const [error, setError] = useState(null);
+  const [address, setAddress] = React.useState<string>("");
+  const [radius, setRadius] = React.useState(10 * 1000);
+  const [hospitalData, setHospitalData] = React.useState<any>([]);
+  const [nextPageToken, setNextPageToken] = React.useState<string>("");
+  const [loader, setLoader] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<any>(null);
 
-  const setAddressState = (newAddress) => {
+  React.useEffect(() => {
+    axios.defaults.baseURL = "https://maps.googleapis.com/maps/api";
+  }, []);
+
+  const setAddressState = (newAddress: string) => {
     setAddress(newAddress);
   };
 
-  const setGeoRadius = (value) => {
+  const setGeoRadius = (value: number) => {
     setRadius(value * 1000);
   };
 
-  const showLoader = (action) => {
+  const showLoader = (action: boolean) => {
     if (action === true) {
       setLoader(true);
     } else {
@@ -41,7 +63,7 @@ const LocationProvider = ({ children }) => {
     //   console.log("prev State");
     //   setHospitalData((prevState) => [...initState]);
     // }
-    setHospitalData(initState);
+    setHospitalData([]);
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
@@ -58,24 +80,23 @@ const LocationProvider = ({ children }) => {
   };
 
   // Function to find nearby hospitals
-  const findHospital = async (lat, lng) => {
+  const findHospital = async (lat: number, lng: number) => {
     try {
       if (lat && lng) {
-        const response = await fetch(
+        const { data } = await axios.get(
           `/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=hospital&keyword=hospital&key=${API_KEY}`
         );
-        const hospitals = await response.json();
         // console.log(hospitals);
-        if (hospitals.status === "OK") {
+        if (data.status === "OK") {
           // setAddressState("");
           showLoader(false);
-          setHospitalData([...hospitalData, ...hospitals.results]);
+          setHospitalData([...hospitalData, ...data.results]);
         }
 
-        if (hospitals.status === "OK" && hospitals.next_page_token) {
+        if (data.status === "OK" && data.next_page_token) {
           // setAddressState("");
           showLoader(false);
-          setNextPageToken(hospitals.next_page_token);
+          setNextPageToken(data.next_page_token);
         }
       } else {
         console.log("Coordinates Not Present");
@@ -88,8 +109,6 @@ const LocationProvider = ({ children }) => {
       setError(error.message);
     }
   };
-
-  const getNextPage = () => {};
 
   return (
     <locationContext.Provider

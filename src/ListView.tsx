@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { List, Space } from "antd";
 import { StarOutlined } from "@ant-design/icons";
-import * as hospitals from "./hospitals.json";
-import { Spin, Button } from "antd";
+import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import locationContext from "./Context";
 // const hospitalData = hospitals.results;
