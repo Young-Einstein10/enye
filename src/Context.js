@@ -3,6 +3,8 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { API_KEY } from "./config";
 const locationContext = createContext();
 
+const initState = [];
+
 const LocationProvider = ({ children }) => {
   const [coordinates, setCoordinates] = useState({
     lat: "",
@@ -10,7 +12,7 @@ const LocationProvider = ({ children }) => {
   });
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState(10 * 1000);
-  const [hospitalData, setHospitalData] = useState([]);
+  const [hospitalData, setHospitalData] = useState(initState);
   const [nextPageToken, setNextPageToken] = useState("");
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
@@ -33,11 +35,17 @@ const LocationProvider = ({ children }) => {
 
   const geocodeAddress = async () => {
     showLoader(true);
+    // Clear Hospital Data
+    // if (hospitalData.length !== 0) {
+    //   console.log("prev State");
+    //   setHospitalData((prevState) => [...initState]);
+    // }
+    setHospitalData(initState);
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
-      console.log(results);
-      console.log(lat, lng);
+      // console.log(results);
+      // console.log(lat, lng);
       // Set Lat and Lng Context
       setCoordinates({ ...coordinates, lat, lng });
       findHospital(lat, lng);
@@ -56,7 +64,7 @@ const LocationProvider = ({ children }) => {
           `/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=hospital&keyword=hospital&key=${API_KEY}`
         );
         const hospitals = await response.json();
-        console.log(hospitals);
+        // console.log(hospitals);
         if (hospitals.status === "OK") {
           // setAddressState("");
           showLoader(false);

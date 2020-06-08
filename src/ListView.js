@@ -20,6 +20,8 @@ const ListView = () => {
   const context = useContext(locationContext);
   const { hospitalData, loader, nextPageToken, error } = context;
 
+  const data = hospitalData;
+
   if (loader) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -44,7 +46,7 @@ const ListView = () => {
           pageSize: 10,
         }}
         // loading="true"
-        dataSource={hospitalData}
+        dataSource={data}
         renderItem={(hospital) => (
           <List.Item
             className="hospital__list-item"
@@ -74,11 +76,11 @@ const ListView = () => {
           </List.Item>
         )}
       />
-      {nextPageToken ? (
+      {/* {nextPageToken ? (
         <div style={{ justifyContent: "center" }}>
           <Button type="primary">Load More</Button>
         </div>
-      ) : null}
+      ) : null} */}
     </>
   );
 };
