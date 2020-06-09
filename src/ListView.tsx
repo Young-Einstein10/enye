@@ -11,7 +11,7 @@ type ICON = {
   text: string | null;
 };
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: 50 }} spin />;
 
 const IconText: FunctionComponent<ICON> = ({ icon, text }): JSX.Element => (
   <Space>
@@ -39,7 +39,7 @@ const ListView: FunctionComponent = () => {
   }
 
   return (
-    <>
+    <div>
       <List
         itemLayout="vertical"
         size="large"
@@ -80,7 +80,7 @@ const ListView: FunctionComponent = () => {
           </List.Item>
         )}
       />
-    </>
+    </div>
   );
 };
 

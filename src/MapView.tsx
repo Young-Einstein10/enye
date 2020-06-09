@@ -12,7 +12,7 @@ import { API_KEY } from "./config";
 
 const mapContainerStyle = {
   width: "100vw",
-  height: "100vh",
+  height: "calc(100vh - 70px)",
 };
 
 const libraries = ["places"];
@@ -87,6 +87,7 @@ const MapView: FunctionComponent = () => {
           >
             <div>
               <h2>{selectedHospital.name}</h2>
+              <p>{selectedHospital.vicinity}</p>
               <p>{selectedHospital.rating}</p>
             </div>
           </InfoWindow>

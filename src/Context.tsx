@@ -12,12 +12,15 @@ interface ContextProps {
   showLoader: (action: boolean) => void;
   radius: number;
   setGeoRadius?: (value: number) => void;
-  findHospital?: (lat: number, lng: number) => void;
+  setType: (value: string) => void;
+  findHospital: (lat: number, lng: number) => void;
   setAddressState?: (newAddress: string) => void;
   geocodeAddress?: () => void;
 }
 
 const locationContext = React.createContext<Partial<ContextProps>>({});
+
+const proxy_url: string = "https://cors-anywhere.herokuapp.com";
 
 type Props = {
   children: React.ReactNode;
@@ -47,7 +50,8 @@ const LocationProvider = ({ children }: Props) => {
     lng: 0,
   });
   const [address, setAddress] = React.useState<string>("");
-  const [radius, setRadius] = React.useState<number>(10 * 1000);
+  const [radius, setRadius] = React.useState<number>(1500);
+  const [searchType, setSearchType] = React.useState<string>("hospital");
   const [hospitalData, setHospitalData] = React.useState<HospitalData[]>([]);
   const [nextPageToken, setNextPageToken] = React.useState<string>("");
   const [loader, setLoader] = React.useState<boolean>(false);
@@ -61,6 +65,12 @@ const LocationProvider = ({ children }: Props) => {
     setRadius(value * 1000);
   };
 
+  const setType = (value: string) => {
+    setSearchType(value);
+  };
+
+  const formatType = (str: string): string => str.split(" ").join("%20");
+
   const showLoader = (action: boolean) => {
     if (action === true) {
       setLoader(true);
@@ -71,7 +81,9 @@ const LocationProvider = ({ children }: Props) => {
 
   const geocodeAddress = async () => {
     showLoader(true);
-    setHospitalData([]);
+    if (address.length === 0) {
+      setError("Please Enter an Address");
+    }
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
@@ -89,7 +101,9 @@ const LocationProvider = ({ children }: Props) => {
     try {
       if (lat && lng) {
         const { data } = await axios.get(
-          `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=hospital&keyword=hospital&key=${API_KEY}`,
+          `${proxy_url}/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
+            searchType
+          )}&keyword=${formatType(searchType)}&key=${API_KEY}`,
           {
             headers: {
               origin: null,
@@ -131,6 +145,7 @@ const LocationProvider = ({ children }: Props) => {
         showLoader,
         radius,
         setGeoRadius,
+        setType,
         findHospital,
         setAddressState,
         geocodeAddress,

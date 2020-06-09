@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -35,11 +35,11 @@ ant-tabs-nav-wrap {
   justify-content: center;
 }
 
-/* .radius-options * {
+.radius-options * {
   color: #fff;
-} */
+}
 
-/* .search {
+.search {
   position: absolute;
   top: 1rem;
   left: 50%;
@@ -55,7 +55,8 @@ ant-tabs-nav-wrap {
   padding: 0.5rem;
   font-size: 1.5rem;
   width: 100%;
-} */
+}
+
 .search-hospital-btn {
   background: lightskyblue;
   border-radius: 15px;
@@ -82,3 +83,5 @@ ant-tabs-nav-wrap {
   background: #fff;
   border-bottom: solid 1px #1f1f1f;
 }
+
+*/

@@ -1,28 +1,10 @@
 export default [
   {
-    featureType: "all",
-    elementType: "geometry.fill",
+    featureType: "administrative",
+    elementType: "labels.text.fill",
     stylers: [
       {
-        weight: "2.00",
-      },
-    ],
-  },
-  {
-    featureType: "all",
-    elementType: "geometry.stroke",
-    stylers: [
-      {
-        color: "#9c9c9c",
-      },
-    ],
-  },
-  {
-    featureType: "all",
-    elementType: "labels.text",
-    stylers: [
-      {
-        visibility: "on",
+        color: "#444444",
       },
     ],
   },
@@ -32,24 +14,6 @@ export default [
     stylers: [
       {
         color: "#f2f2f2",
-      },
-    ],
-  },
-  {
-    featureType: "landscape",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#ffffff",
-      },
-    ],
-  },
-  {
-    featureType: "landscape.man_made",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#ffffff",
       },
     ],
   },
@@ -71,33 +35,6 @@ export default [
       },
       {
         lightness: 45,
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#eeeeee",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#7b7b7b",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#ffffff",
       },
     ],
   },
@@ -137,33 +74,6 @@ export default [
       },
       {
         visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#c8d7d4",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#070707",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#ffffff",
       },
     ],
   },

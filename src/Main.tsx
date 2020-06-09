@@ -8,7 +8,7 @@ import { API_KEY } from "./config";
 import { Tabs } from "antd";
 import { Layout } from "antd";
 
-const { Header, Footer, Content } = Layout;
+const { Footer, Sider, Content } = Layout;
 const { TabPane } = Tabs;
 const libraries = ["places"];
 
@@ -16,33 +16,61 @@ const Main: FunctionComponent = () => {
   return (
     <LoadScript googleMapsApiKey={API_KEY} libraries={libraries}>
       <LocationProvider>
-        <Layout>
-          <Header
-            className="search-header"
-            style={{ padding: "15px inherit", height: "200px" }}
+        <Layout style={{ height: "100vh" }}>
+          <Sider
+            width={350}
+            breakpoint="md"
+            collapsible={true}
+            collapsedWidth={50}
+            theme="dark"
           >
-            <SearchBox />
-          </Header>
-          <Content style={{ padding: "0 50px" }}>
-            <Tabs
-              defaultActiveKey="1"
-              style={{ justifyContent: "center" }}
-              // onChange={callback}
+            <header
+              style={{
+                padding: "0 20px",
+                paddingBottom: "10px",
+                paddingTop: "5px",
+              }}
             >
-              <TabPane tab="Tab 1" key="1">
-                <ListView />
-              </TabPane>
+              <h2
+                className="logo"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  fontWeight: 700,
+                }}
+              >
+                Hospitals Nearby.
+              </h2>
+            </header>
+            <SearchBox />
+          </Sider>
 
-              <TabPane tab="Tab 2" key="2">
-                <MapView />
-              </TabPane>
-            </Tabs>
-          </Content>
-          <Footer>
-            {" "}
-            © {new Date().getFullYear()} Built by{" "}
-            <a href="https://github.com/Young-Einstein10">Young-Einstein10</a>
-          </Footer>
+          <Layout>
+            <Content style={{ padding: "0 30px", height: "100vh" }}>
+              <Tabs defaultActiveKey="1">
+                <TabPane tab="ListView" key="1">
+                  <ListView />
+                </TabPane>
+
+                <TabPane tab="MapView" key="2">
+                  <MapView />
+                </TabPane>
+              </Tabs>
+              <Footer
+                style={{
+                  position: "absolute",
+                  bottom: "0px",
+                  padding: "24px 0",
+                }}
+              >
+                {" "}
+                © {new Date().getFullYear()} Built by{" "}
+                <a href="https://github.com/Young-Einstein10">
+                  Young-Einstein10
+                </a>
+              </Footer>
+            </Content>
+          </Layout>
         </Layout>
       </LocationProvider>
     </LoadScript>
