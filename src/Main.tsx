@@ -6,7 +6,8 @@ import MapView from "./MapView";
 import { LocationProvider } from "./Context";
 import { ModalProvider } from "./ModalContext";
 import { API_KEY } from "./config";
-import { Tabs, Typography, Layout } from "antd";
+import { Tabs, Typography, Layout, Drawer, Button } from "antd";
+import { MenuUnfoldOutlined } from "@ant-design/icons";
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -14,9 +15,15 @@ const { TabPane } = Tabs;
 const libraries = ["places"];
 
 const Main: FunctionComponent = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
-  const classes = isVisible ? "" : "hide-nav";
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
 
   return (
     <LoadScript googleMapsApiKey={API_KEY} libraries={libraries}>
@@ -25,11 +32,11 @@ const Main: FunctionComponent = () => {
           <Layout style={{ height: "100vh" }}>
             <Sider
               width={350}
-              breakpoint="md"
               collapsible={true}
               collapsedWidth={50}
               theme="dark"
-              className={classes}
+              className="hide-sidenav"
+              style={{ background: "#0e153a" }}
               trigger={null}
             >
               <header
@@ -50,8 +57,25 @@ const Main: FunctionComponent = () => {
                   Hospitals Nearby.
                 </Title>
               </header>
-              <SearchBox />
+              <SearchBox style={{ padding: "0 20px", marginTop: "50px" }} />
             </Sider>
+
+            <>
+              <Button className="menu-btn" type="primary" onClick={showDrawer}>
+                <MenuUnfoldOutlined style={{ fontSize: "20px" }} />
+              </Button>
+              <Drawer
+                title="Hospitals Nearby."
+                placement="left"
+                closable={false}
+                width={350}
+                onClose={onClose}
+                visible={visible}
+                bodyStyle={{ background: "#0e153a" }}
+              >
+                <SearchBox style={{ padding: "0 0px", marginTop: "50px" }} />
+              </Drawer>
+            </>
 
             <Layout>
               <Content style={{ padding: "0 30px", height: "100vh" }}>

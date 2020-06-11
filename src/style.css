@@ -1,94 +1,14 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 18px;
+.menu-btn {
+  display: none;
 }
-
-h1 {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: #281414;
-  z-index: 10;
-  margin: 0;
-  padding: 0;
-}
-
-header.search-header {
-  min-height: 100px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.searchBar {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-ant-tabs-nav-wrap {
-  display: flex;
-  justify-content: center;
-}
-
-.radius-options * {
-  color: #fff;
-}
-
-.search {
-  position: absolute;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 400px;
-  z-index: 10;
-  display: flex;
-}
-
-
-.search input {
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  width: 100%;
-}
-
-.search-hospital-btn {
-  background: lightskyblue;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  width: 100px;
-}
-
-.locate {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  z-index: 10;
-}
-
-.locate img {
-  width: 30px;
-  cursor: pointer;
-}
-
-.hospital__list-item {
-  background: #fff;
-  border-bottom: solid 1px #1f1f1f;
-}
-
-*/
 
 @media screen and (max-width: 768px) {
-  .hide-nav {
-    left: -350px;
-    transition: 0.3s ease-out;
+  .hide-sidenav {
+    display: none;
+  }
+
+  .menu-btn {
+    display: block;
+    margin: 13px 30px;
   }
 }

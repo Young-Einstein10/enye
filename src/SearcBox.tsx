@@ -40,7 +40,11 @@ const columns = [
   // },
 ];
 
-const Search: FunctionComponent = () => {
+type Props = {
+  style: React.CSSProperties;
+};
+
+const Search: FunctionComponent<Props> = (props) => {
   const context = useContext(locationContext);
   const {
     setGeoRadius,
@@ -58,7 +62,7 @@ const Search: FunctionComponent = () => {
   const { isVisible, closeModal, showModal } = modalContext;
 
   let tabkey = 1;
-  const searchData = searchHistory.map((search) => {
+  const searchData = searchHistory?.map((search) => {
     const { address, createdOn, radius, searchType } = search;
 
     return {
@@ -70,12 +74,12 @@ const Search: FunctionComponent = () => {
     };
   });
 
-  const convertAddress = async (address) => {
+  const convertAddress = async (address: string) => {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
       setLocationCoords(lat, lng);
-      findHospital(lat, lng);
+      findHospital(lat, lng, address);
     } catch (error) {
       console.log(error);
       showLoader(false);
@@ -99,10 +103,7 @@ const Search: FunctionComponent = () => {
 
   return (
     <React.Fragment>
-      <div
-        className="searchBar"
-        style={{ padding: "0 20px", marginTop: "50px" }}
-      >
+      <div className="searchBar" style={props.style}>
         <AutoComplete
           style={{
             width: 300,
@@ -213,7 +214,7 @@ const Search: FunctionComponent = () => {
                     setGeoRadius(record.radius / 1000);
                     setType(record.searchType);
                     convertAddress(record.address);
-                    console.log(record, rowIndex);
+                    // console.log(record, rowIndex);
                   },
                 };
               }}

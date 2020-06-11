@@ -5,29 +5,8 @@ import { API_KEY } from "./config";
 import { firestore } from "./Firebase";
 import axios from "axios";
 
-interface ContextProps {
-  loader: boolean;
-  error: any;
-  // nextPageToken: string;
-  hospitalData: HospitalData[];
-  searchHistory: SearchHistory[];
-  showLoader: (action: boolean) => void;
-  radius: number;
-  setGeoRadius?: (value: number) => void;
-  setError?: any;
-  setLocationCoords: (lat: number, lng: number) => void;
-  setType: (value: string) => void;
-  findHospital: (lat: number, lng: number) => void;
-  setAddressState?: (newAddress: string) => void;
-  geocodeAddress?: () => void;
-}
-
-const locationContext = React.createContext<Partial<ContextProps>>({});
-
-const proxy_url: string = "https://cors-anywhere.herokuapp.com";
-
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 type Coords = {
@@ -39,6 +18,26 @@ type Location = {
   location?: Coords | null;
 };
 
+interface ContextProps {
+  loader: boolean;
+  error: any;
+  // nextPageToken: string;
+  hospitalData: HospitalData[];
+  searchHistory: SearchHistory[];
+  showLoader: (action: boolean) => void;
+  radius: number;
+  setGeoRadius?: (value: number) => void;
+  setError?: any;
+  setLocationCoords?: (lat: number, lng: number) => void;
+  setType: (value: string) => void;
+  findHospital: (lat: number, lng: number, address: string) => void;
+  setAddressState?: (newAddress: string) => void;
+  geocodeAddress?: () => void;
+}
+
+const locationContext = React.createContext<Partial<ContextProps>>({});
+
+const proxy_url: string = "https://cors-anywhere.herokuapp.com";
 interface HospitalData {
   id: string;
   rating: number | null;
@@ -46,13 +45,17 @@ interface HospitalData {
   icon?: string;
   vicinity: string | any;
   business_status: string;
-  geometry: Location;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
 }
 
 interface SearchHistory {
   id: string;
   address: string;
-  req_url: string;
   searchType: string;
   radius: number;
   createdOn: Date;
@@ -77,12 +80,14 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
     const getSearchFromDB = async () => {
       if (!isCancelled) {
         firestore.collection("searches").onSnapshot((snapshot) => {
-          let pastSearches = [];
+          let pastSearches: SearchHistory[] = [];
           snapshot.docChanges().forEach((element) => {
             if (element.type === "added") {
               pastSearches.push({
                 id: element.doc.id,
-                ...element.doc.data(),
+                address: element.doc.data().address,
+                searchType: element.doc.data().searchType,
+                radius: element.doc.data().radius,
                 createdOn: element.doc.data().createdOn.toDate(),
               });
             }
@@ -134,7 +139,7 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
       setCoordinates({ ...coordinates, lat, lng });
-      findHospital(lat, lng);
+      findHospital(lat, lng, address);
     } catch (error) {
       console.log(error);
       showLoader(false);
@@ -143,7 +148,7 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
   };
 
   // Function to find nearby hospitals
-  const findHospital = async (lat: number, lng: number) => {
+  const findHospital = async (lat: number, lng: number, address: string) => {
     try {
       if (lat && lng) {
         const req_url: string = `${proxy_url}/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
@@ -221,11 +226,11 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
     }
   };
 
-  const addSearchToDB = async (search) => {
+  const addSearchToDB = async (search: {}) => {
     try {
       const docRef = await firestore.collection("searches").add(search);
       const doc = await docRef.id;
-      // console.log(doc);
+      console.log(doc);
     } catch (error) {
       console.log(error);
       setError(error.message);

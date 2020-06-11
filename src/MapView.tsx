@@ -55,7 +55,7 @@ const MapView: FunctionComponent = () => {
         center={mapCenter}
       >
         {/* Markers */}
-        {hospitalData.map((marker: any) => (
+        {hospitalData?.map((marker) => (
           <Marker
             key={marker.id}
             position={{

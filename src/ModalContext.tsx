@@ -7,7 +7,7 @@ interface ContextProps {
 }
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const ModalContext = createContext<Partial<ContextProps>>({});
