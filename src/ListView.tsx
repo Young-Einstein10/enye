@@ -26,9 +26,16 @@ const ListView: FunctionComponent = () => {
 
   const data = hospitalData;
 
+  const spinnerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    height: "calc(100vh - 70px)",
+    alignItems: "center",
+  };
+
   if (loader) {
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={spinnerStyles}>
         <Spin indicator={antIcon} />
       </div>
     );
@@ -51,7 +58,7 @@ const ListView: FunctionComponent = () => {
         }}
         // loading="true"
         dataSource={data}
-        renderItem={(hospital: any) => (
+        renderItem={(hospital) => (
           <List.Item
             className="hospital__list-item"
             key={hospital.id}

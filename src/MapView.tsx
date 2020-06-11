@@ -44,7 +44,7 @@ const MapView: FunctionComponent = () => {
   const { hospitalData } = context;
 
   if (loadError) return <p>Error loading maps</p>;
-  if (!isLoaded) return <p>Loading Maps</p>;
+  if (!isLoaded) return <p>Loading Maps...</p>;
 
   return (
     <div>
@@ -88,7 +88,7 @@ const MapView: FunctionComponent = () => {
             <div>
               <h2>{selectedHospital.name}</h2>
               <p>{selectedHospital.vicinity}</p>
-              <p>{selectedHospital.rating}</p>
+              <p>rating: {selectedHospital.rating}</p>
             </div>
           </InfoWindow>
         )}
