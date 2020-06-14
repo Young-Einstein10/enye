@@ -10,10 +10,14 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const ModalContext = createContext<Partial<ContextProps>>({});
+const ModalContext = createContext<ContextProps>({
+  isVisible: false,
+  showModal: () => {},
+  closeModal: () => {},
+});
 
 const ModalProvider: FunctionComponent = ({ children }: Props) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const showModal = () => {
     setIsVisible(true);

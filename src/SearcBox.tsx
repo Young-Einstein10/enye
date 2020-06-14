@@ -29,15 +29,6 @@ const columns = [
     dataIndex: "createdOn",
     key: "createdOn",
   },
-  // {
-  //   title: "Action",
-  //   key: "action",
-  //   render: () => (
-  //     <Space size="middle">
-  //       <Button type="link" id>Delete</Button>
-  //     </Space>
-  //   ),
-  // },
 ];
 
 type Props = {

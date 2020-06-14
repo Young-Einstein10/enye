@@ -3,6 +3,7 @@ import * as React from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { API_KEY } from "./config";
 import { firestore } from "./Firebase";
+import { auth } from "./Firebase";
 import axios from "axios";
 
 type Props = {
@@ -26,16 +27,30 @@ interface ContextProps {
   searchHistory: SearchHistory[];
   showLoader: (action: boolean) => void;
   radius: number;
-  setGeoRadius?: (value: number) => void;
+  setGeoRadius: (value: number) => void;
   setError?: any;
-  setLocationCoords?: (lat: number, lng: number) => void;
+  setLocationCoords: (lat: number, lng: number) => void;
   setType: (value: string) => void;
   findHospital: (lat: number, lng: number, address: string) => void;
-  setAddressState?: (newAddress: string) => void;
-  geocodeAddress?: () => void;
+  setAddressState: (newAddress: string) => void;
+  geocodeAddress: () => void;
 }
 
-const locationContext = React.createContext<Partial<ContextProps>>({});
+const locationContext = React.createContext<ContextProps>({
+  loader: false,
+  error: null,
+  hospitalData: [],
+  searchHistory: [],
+  showLoader: (action: boolean) => {},
+  radius: 1500,
+  setGeoRadius: (value: number) => {},
+  // setError: ,
+  setLocationCoords: (lat: number, lng: number) => {},
+  setType: (value: string) => {},
+  findHospital: (lat: number, lng: number, address: string) => {},
+  setAddressState: (newAddress: string) => {},
+  geocodeAddress: () => {},
+});
 
 const proxy_url: string = "https://cors-anywhere.herokuapp.com";
 interface HospitalData {
@@ -76,31 +91,39 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
   const [error, setError] = React.useState<any | null>(null);
 
   React.useEffect(() => {
-    let isCancelled = false;
-    const getSearchFromDB = async () => {
-      if (!isCancelled) {
-        firestore.collection("searches").onSnapshot((snapshot) => {
-          let pastSearches: SearchHistory[] = [];
-          snapshot.docChanges().forEach((element) => {
-            if (element.type === "added") {
-              pastSearches.push({
-                id: element.doc.id,
-                address: element.doc.data().address,
-                searchType: element.doc.data().searchType,
-                radius: element.doc.data().radius,
-                createdOn: element.doc.data().createdOn.toDate(),
-              });
-            }
-          });
+    let unsubscribe: null | any = null;
+    // const { uid } = auth.currentUser || {};
 
-          setSearchHistory((prevState) => [...prevState, ...pastSearches]);
+    unsubscribe = firestore
+      .collection("searches")
+      // .where("user.uid", "==", uid)
+      .orderBy("createdOn", "desc")
+      .onSnapshot((snapshot) => {
+        let pastSearches: SearchHistory[] = [];
+        snapshot.docChanges().forEach((element) => {
+          if (element.type === "added") {
+            pastSearches.push({
+              id: element.doc.id,
+              address: element.doc.data().address,
+              searchType: element.doc.data().searchType,
+              radius: element.doc.data().radius,
+              createdOn: element.doc.data().createdOn.toDate(),
+            });
+            // console.log({
+            //   id: element.doc.id,
+            //   address: element.doc.data().address,
+            //   searchType: element.doc.data().searchType,
+            //   radius: element.doc.data().radius,
+            //   createdOn: element.doc.data().createdOn.toDate(),
+            //   ...element.doc.data(),
+            // });
+          }
         });
-      }
-    };
 
-    getSearchFromDB();
+        setSearchHistory((prevState) => [...prevState, ...pastSearches]);
+      });
     return () => {
-      isCancelled = true;
+      unsubscribe();
     };
   }, []);
 
@@ -163,12 +186,20 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
         if (data.status === "OK") {
           // setAddressState("");
           showLoader(false);
+          const { uid, displayName, email, photoURL } = auth.currentUser || {};
+
           setHospitalData([...data.results]);
           let newSearch = {
             address,
             searchType,
             radius,
             createdOn: new Date(),
+            user: {
+              uid,
+              displayName,
+              email,
+              photoURL,
+            },
           };
           addSearchToDB(newSearch);
         }

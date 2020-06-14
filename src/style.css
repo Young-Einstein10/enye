@@ -1,3 +1,34 @@
+.nav {
+  display: flex;
+  height: 60px;
+  background: rgb(14, 21, 58) none repeat scroll 0% 0%;
+  color: #fff;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  border-bottom: solid 1px lightblue;
+}
+
+.nav a {
+  color: #fff;
+}
+
+.nav-items {
+  display: flex;
+}
+
+.nav-items a {
+  margin: 0 15px;
+}
+
+.form-container {
+  height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .menu-btn {
   display: none;
 }
