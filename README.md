@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Hospitals Nearby.
 
-## Available Scripts
+### Overview
 
-In the project directory, you can run:
+In this COVID world that we live in, it is important that people can easily access medical assistance if need be. With that in mind, the goal of this challenge is to build an application that can locate all the hospitals within a given area. User search results will be persisted in a database and user will be able to see search histories unique to them alone.
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technologies
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+These following technologies were used when building this application
 
-### `yarn test`
+- [ReactJS](https://reactjs.org/docs/getting-started.html) and [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [Typescript](https://create-react-app.dev/docs/adding-typescript/)
+- [Google Maps API](https://developers.google.com/maps/documentation) or [Google Places API](https://developers.google.com/places/web-service/intro) or Any Third Party Location API of Choice
+- [AntD](https://ant.design/docs/react/introduce)
+- [FireAuth](https://firebase.google.com/docs/auth) or [Auth0](https://auth0.com/docs/quickstarts/)
+- [FireStore](https://firebase.google.com/docs/firestore)
+- [Firebase Cloud Functons](https://firebase.google.com/docs/functions)
+- [Express](https://expressjs.com/)
+- [GraphQL](https://graphql.org/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Application Requirements
 
-### `yarn build`
+- Users should be able to type into a search bar
+- Users should be able to pick a geo-fencing radius for the search results
+  - (example - 5km, 10km, 20km etc...)
+- Users should be able to search for Hospitals, Pharmacies, Clinics and Medical Offices
+- Typing into the search bar generates search results
+- User should be able to see the search results
+- Users should be able to see past results
+  - There should be a place that a user can click to see all the results that have been searched on the app
+  - Clicking on a past search result should trigger a request and the results should be displayed for the user.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Authentication
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+  - User should be able to signup for the application
+  - User should be able to access the application using their email and password
+  - User should only be allowed to access the application if they are signed in
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- GraphQL
+  - Build a GraphQL layer that pulls the users specific search results from your database or API
+  - User should only see their own search history
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Clone this repository into your local machine:
+  
+```git
+git clone https://github.com/Young-Einstein10/enye.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Install dependencies:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```git
+yarn install or npm install
+```
 
-## Learn More
+- To start the application:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```git
+yarn start or npm start
+```
 
 ### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- Live Project is deployed [here](https://enye.now.sh/)
 
-### `yarn build` fails to minify
+### Contributing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Pull requests are welcome. File an issue for ideas, conversation or feedback.
+
+### Author
+
+- Abdulrahman Yusuf
+
+### License
+
+- This project is licensed under the MIT Public License
