@@ -3,7 +3,7 @@ import { List, Space } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import locationContext from "./Context";
+import locationContext from "../Context/Context";
 // const hospitalData = hospitals.results;
 
 type ICON = {

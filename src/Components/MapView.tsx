@@ -5,10 +5,10 @@ import {
   InfoWindow,
   useLoadScript,
 } from "@react-google-maps/api";
-import mapStyles from "./mapStyles";
-import locationContext from "./Context";
+import mapStyles from "../mapStyles";
+import locationContext from "../Context/Context";
 
-import { API_KEY } from "./config";
+import { API_KEY } from "../utils/config";
 
 const mapContainerStyle = {
   width: "100vw",

@@ -32,11 +32,11 @@ const getAllUsers = async () => {
         id: doc.id,
         ...doc.data(),
         createdAt: new Date(
-          doc.data().createdOn.seconds * 1000
+          doc.data().createdAt.seconds * 1000
         ).toLocaleString(),
       })
     );
-    // res.json(users);
+    console.log(users);
     return users;
   } catch (error) {
     console.log(error);

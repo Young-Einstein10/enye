@@ -6,9 +6,9 @@ import {
   MailOutlined,
   LoadingOutlined,
 } from "@ant-design/icons";
-import { auth } from "./Firebase";
-import { createUserDocument } from "./utilities";
-import { UserContext } from "./Context/UserContext";
+import { auth } from "../utils/Firebase";
+import { createUserDocument } from "../utils/utilities";
+import { UserContext } from "../Context/UserContext";
 
 const { Title } = Typography;
 

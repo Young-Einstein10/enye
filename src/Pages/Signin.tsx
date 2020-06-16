@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Form, Input, Button, Typography, Spin } from "antd";
-import { auth } from "./Firebase";
+import { auth } from "../utils/Firebase";
 import { LockOutlined, LoadingOutlined, MailOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
-import { UserContext } from "./Context/UserContext";
+import { UserContext } from "../Context/UserContext";
 
 const { Title } = Typography;
 

@@ -4,8 +4,8 @@ import React, {
   useEffect,
   FunctionComponent,
 } from "react";
-import { auth } from "../Firebase";
-import { createUserDocument, collectIdsAndData } from "../utilities";
+import { auth } from "../utils/Firebase";
+import { createUserDocument, collectIdsAndData } from "../utils/utilities";
 import { useHistory } from "react-router-dom";
 
 type Props = {

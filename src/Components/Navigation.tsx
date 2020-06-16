@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { signOut } from "./Firebase";
-import { UserContext } from "./Context/UserContext";
+import { signOut } from "../utils/Firebase";
+import { UserContext } from "../Context/UserContext";
 import { Button } from "antd";
 
 const Navigation = () => {

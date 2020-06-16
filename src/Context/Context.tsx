@@ -1,8 +1,8 @@
 import * as React from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
-import { API_KEY } from "./config";
-import { firestore } from "./Firebase";
-import { auth } from "./Firebase";
+import { API_KEY } from "../utils/config";
+import { firestore } from "../utils/Firebase";
+import { auth } from "../utils/Firebase";
 import axios from "axios";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";

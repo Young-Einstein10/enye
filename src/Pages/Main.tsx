@@ -1,14 +1,11 @@
-import React, {
-  FunctionComponent,
-  useState,
-} from "react";
+import React, { FunctionComponent, useState } from "react";
 import { LoadScript } from "@react-google-maps/api";
-import SearchBox from "./SearcBox";
-import ListView from "./ListView";
-import MapView from "./MapView";
-import { LocationProvider } from "./Context";
-import { ModalProvider } from "./ModalContext";
-import { API_KEY } from "./config";
+import SearchBox from "../Components/SearcBox";
+import ListView from "../Components/ListView";
+import MapView from "../Components/MapView";
+import { LocationProvider } from "../Context/Context";
+import { ModalProvider } from "../Context/ModalContext";
+import { API_KEY } from "../utils/config";
 import { Tabs, Typography, Layout, Drawer, Button } from "antd";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
 

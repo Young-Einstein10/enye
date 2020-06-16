@@ -1,7 +1,7 @@
 import React, { useContext, FunctionComponent } from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
-import locationContext from "./Context";
-import ModalContext from "./ModalContext";
+import locationContext from "../Context/Context";
+import ModalContext from "../Context/ModalContext";
 import usePlacesAutoComplete from "use-places-autocomplete";
 import { AutoComplete } from "antd";
 import { Select, Button, Modal, Table } from "antd";

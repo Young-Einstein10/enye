@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from "react";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import Main from "./Main";
+import Main from "./Pages/Main";
 import { Switch, Route } from "react-router-dom";
-import Signin from "./Signin";
-import Signup from "./Signup";
-import Navigation from "./Navigation";
-import AuthRoute from "./AuthRoute";
+import Signin from "./Pages/Signin";
+import Signup from "./Pages/Signup";
+import Navigation from "./Components/Navigation";
+import AuthRoute from "./utils/AuthRoute";
 
 import "antd/dist/antd.css";
 import "./style.css";
