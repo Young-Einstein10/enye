@@ -1,8 +1,6 @@
 import React, {
   FunctionComponent,
   useState,
-  useEffect,
-  useContext,
 } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import SearchBox from "./SearcBox";
@@ -13,8 +11,6 @@ import { ModalProvider } from "./ModalContext";
 import { API_KEY } from "./config";
 import { Tabs, Typography, Layout, Drawer, Button } from "antd";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
-import { Redirect, useHistory } from "react-router-dom";
-import { UserContext } from "./Context/UserContext";
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -23,25 +19,6 @@ const libraries = ["places"];
 
 const Main: FunctionComponent = () => {
   const [visible, setVisible] = useState(false);
-  let history = useHistory();
-  const context = useContext(UserContext);
-  const {
-    userState: { user, loaded },
-  } = context;
-
-  // useEffect(() => {
-  //   let isCancelled = false;
-  //   if (!isCancelled) {
-  //     if (!loaded) {
-  //       // return <Redirect to="/signin" />;
-  //       history.push("/signin");
-  //     }
-  //   }
-
-  //   return () => {
-  //     isCancelled = true;
-  //   };
-  // }, [loaded, history]);
 
   const showDrawer = () => {
     setVisible(true);

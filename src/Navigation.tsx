@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { signOut } from "./Firebase";
 import { UserContext } from "./Context/UserContext";
-// import Main from './Main'
+import { Button } from "antd";
 
 const Navigation = () => {
   const context = useContext(UserContext);
@@ -33,8 +33,9 @@ const SignedinNav = () => {
       </div>
 
       <div className="nav-items">
-        <Link to="/main">Dashboard</Link>
-        <button onClick={handleSignOut}>Sign Out</button>
+        <Button type="primary" onClick={handleSignOut}>
+          Sign Out
+        </Button>
       </div>
     </nav>
   );

@@ -1,10 +1,28 @@
-// import React, { useState, createContext, useEffect } from "react";
 import * as React from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { API_KEY } from "./config";
 import { firestore } from "./Firebase";
 import { auth } from "./Firebase";
 import axios from "axios";
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
+const GetUserDetailsQuery = gql`
+  query GetUserDetails($id: String!) {
+    user(id: $id) {
+      id
+      fullname
+      email
+      searchHistory {
+        id
+        address
+        searchType
+        radius
+        createdOn
+      }
+    }
+  }
+`;
 
 type Props = {
   children?: React.ReactNode;
@@ -86,46 +104,26 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
   const [searchType, setSearchType] = React.useState<string>("hospital");
   const [hospitalData, setHospitalData] = React.useState<HospitalData[]>([]);
   const [searchHistory, setSearchHistory] = React.useState<SearchHistory[]>([]);
-  // const [nextPageToken, setNextPageToken] = React.useState<string>("");
   const [loader, setLoader] = React.useState<boolean>(false);
   const [error, setError] = React.useState<any | null>(null);
 
+  const updateSearchHistory = (data: any) => {
+    setSearchHistory((prevState) => [
+      ...prevState,
+      ...data.user[0].searchHistory,
+    ]);
+  };
+
+  const { loading, data } = useQuery(GetUserDetailsQuery, {
+    variables: { id: auth?.currentUser?.uid },
+  });
+
   React.useEffect(() => {
-    let unsubscribe: null | any = null;
-    // const { uid } = auth.currentUser || {};
-
-    unsubscribe = firestore
-      .collection("searches")
-      // .where("user.uid", "==", uid)
-      .orderBy("createdOn", "desc")
-      .onSnapshot((snapshot) => {
-        let pastSearches: SearchHistory[] = [];
-        snapshot.docChanges().forEach((element) => {
-          if (element.type === "added") {
-            pastSearches.push({
-              id: element.doc.id,
-              address: element.doc.data().address,
-              searchType: element.doc.data().searchType,
-              radius: element.doc.data().radius,
-              createdOn: element.doc.data().createdOn.toDate(),
-            });
-            // console.log({
-            //   id: element.doc.id,
-            //   address: element.doc.data().address,
-            //   searchType: element.doc.data().searchType,
-            //   radius: element.doc.data().radius,
-            //   createdOn: element.doc.data().createdOn.toDate(),
-            //   ...element.doc.data(),
-            // });
-          }
-        });
-
-        setSearchHistory((prevState) => [...prevState, ...pastSearches]);
-      });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    if (!loading && data) {
+      console.log(data.user[0].searchHistory);
+      updateSearchHistory(data);
+    }
+  }, [loading, data]);
 
   const setAddressState = (newAddress: string) => {
     setAddress(newAddress);
@@ -186,7 +184,7 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
         if (data.status === "OK") {
           // setAddressState("");
           showLoader(false);
-          const { uid, displayName, email, photoURL } = auth.currentUser || {};
+          const { uid, email } = auth.currentUser || {};
 
           setHospitalData([...data.results]);
           let newSearch = {
@@ -196,27 +194,11 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
             createdOn: new Date(),
             user: {
               uid,
-              displayName,
               email,
-              photoURL,
             },
           };
           addSearchToDB(newSearch);
         }
-
-        // if (data.status === "OK" && data.next_page_token) {
-        //   // setAddressState("");
-        //   showLoader(false);
-        //   setNextPageToken(data.next_page_token);
-        //   setHospitalData([...data.results]);
-        //   let newSearch = {
-        //     address,
-        //     searchType,
-        //     radius,
-        //     createdOn: new Date(),
-        //   };
-        //   addSearchToDB(newSearch);
-        // }
 
         if (data.status === "ZERO_RESULTS") {
           // setAddressState("");

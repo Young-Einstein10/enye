@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Form, Input, Button } from "antd";
-import { Spin } from "antd";
-
+import React, { useState, useContext } from "react";
+import { Form, Input, Button, Spin, Typography } from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -9,8 +7,10 @@ import {
   LoadingOutlined,
 } from "@ant-design/icons";
 import { auth } from "./Firebase";
-import { useHistory } from "react-router-dom";
 import { createUserDocument } from "./utilities";
+import { UserContext } from "./Context/UserContext";
+
+const { Title } = Typography;
 
 const antIcon = (
   <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />
@@ -23,10 +23,10 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  let history = useHistory();
+  const context = useContext(UserContext);
+  const { isSignedIn } = context;
 
   const handleSubmit = async (values: any) => {
-    // console.log("Success:", values);
     setLoading(true);
     const { fullname, email, password } = values;
 
@@ -36,7 +36,7 @@ const Signup = () => {
         password
       );
       createUserDocument(user, { fullname });
-      history.push("/main");
+      isSignedIn(true);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -45,12 +45,9 @@ const Signup = () => {
     }
   };
 
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log("Failed:", errorInfo);
-  // };
-
   return (
     <div className="form-container">
+      <Title level={2}>Sign Up</Title>
       <Form
         name="normal_signup"
         className="signup-form"
@@ -60,8 +57,9 @@ const Signup = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          maxWidth: "600px",
+          maxWidth: "500px",
           width: "100%",
+          marginTop: "20px",
         }}
         onFinish={handleSubmit}
       >
@@ -139,7 +137,9 @@ const Signup = () => {
             {loading ? <Spin indicator={antIcon} /> : "Sign Up"}
           </Button>
         </Form.Item>
-        {error ? <p>{error}</p> : null}
+        {error ? (
+          <p style={{ color: "#ff4d4f", textAlign: "center" }}>{error}</p>
+        ) : null}
       </Form>
     </div>
   );

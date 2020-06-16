@@ -61,7 +61,7 @@ const Search: FunctionComponent<Props> = (props) => {
       address,
       radius,
       searchType,
-      createdOn: createdOn.toLocaleString(),
+      createdOn,
     };
   });
 

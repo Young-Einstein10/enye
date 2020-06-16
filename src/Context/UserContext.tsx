@@ -20,6 +20,7 @@ type UserState = {
 interface ContextProps {
   userState: UserState;
   onLogout: () => void;
+  isSignedIn: (action: boolean) => void;
 }
 
 export const UserContext = createContext<ContextProps>({
@@ -28,6 +29,7 @@ export const UserContext = createContext<ContextProps>({
     loaded: false,
   },
   onLogout: () => {},
+  isSignedIn: (action: boolean) => {},
 });
 
 const UserProvider: FunctionComponent = ({ children }: Props) => {
@@ -35,6 +37,7 @@ const UserProvider: FunctionComponent = ({ children }: Props) => {
     user: null,
     loaded: false,
   });
+  const [signedIn, setSignedIn] = useState(false);
   const [isLoading, setisLoading] = useState(true);
 
   let history = useHistory();
@@ -55,10 +58,23 @@ const UserProvider: FunctionComponent = ({ children }: Props) => {
         setisLoading(false);
       }
     });
+    if (signedIn) {
+      history.push("/main");
+    }
     return () => {
       unsubscribeFromAuth();
     };
-  }, [history]);
+  }, [history, signedIn]);
+
+  const isSignedIn = (action: boolean) => {
+    if (action === true) {
+      setSignedIn(true);
+      history.push("/main");
+    } else {
+      setSignedIn(false);
+      history.push("/signin");
+    }
+  };
 
   const onLogout = () => {
     setUserState({ ...userState, loaded: false, user: null });
@@ -69,6 +85,7 @@ const UserProvider: FunctionComponent = ({ children }: Props) => {
       value={{
         userState,
         onLogout,
+        isSignedIn,
       }}
     >
       {isLoading ? <p>Loading App....</p> : children}

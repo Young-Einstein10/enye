@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Form, Input, Button } from "antd";
-import { Spin } from "antd";
+import { Form, Input, Button, Typography, Spin } from "antd";
 import { auth } from "./Firebase";
 import { LockOutlined, LoadingOutlined, MailOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "./Context/UserContext";
+
+const { Title } = Typography;
 
 const antIcon = (
   <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />
@@ -19,6 +20,7 @@ const Signin = () => {
   const context = useContext(UserContext);
   const {
     userState: { loaded },
+    isSignedIn,
   } = context;
 
   let history = useHistory();
@@ -37,7 +39,8 @@ const Signin = () => {
     try {
       const { user } = await auth.signInWithEmailAndPassword(email, password);
       console.log(user?.uid);
-      history.push("/main");
+      // history.push("/main");
+      isSignedIn(true);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -46,12 +49,9 @@ const Signin = () => {
     }
   };
 
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log("Failed:", errorInfo);
-  // };
-
   return (
     <div className="form-container">
+      <Title level={2}>Sign In</Title>
       <Form
         name="normal_login"
         className="login-form"
@@ -61,8 +61,9 @@ const Signin = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          maxWidth: "600px",
+          maxWidth: "500px",
           width: "100%",
+          marginTop: "20px",
         }}
         onFinish={handleSubmit}
       >
@@ -119,7 +120,9 @@ const Signin = () => {
             {loading ? <Spin indicator={antIcon} /> : "Log In"}
           </Button>
         </Form.Item>
-        {error ? <p>{error}</p> : null}
+        {error ? (
+          <p style={{ color: "#ff4d4f", textAlign: "center" }}>{error}</p>
+        ) : null}
       </Form>
     </div>
   );
