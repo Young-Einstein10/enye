@@ -118,11 +118,51 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
     variables: { id: auth?.currentUser?.uid },
   });
 
+  // React.useEffect(() => {
+  //   if (!loading && data) {
+  //     console.log(data.user[0].searchHistory);
+  //     updateSearchHistory(data);
+  //   }
+  // }, [loading, data]);
+
   React.useEffect(() => {
+    let isCancelled = false;
+    const getSearchFromDB = async () => {
+      if (!isCancelled) {
+        firestore
+          .collection("searches")
+          .orderBy("createdOn", "desc")
+          .onSnapshot((snapshot) => {
+            let pastSearches: any[] = [];
+            snapshot.docChanges().forEach((element) => {
+              if (
+                element.type === "added" &&
+                element.doc.data().user.uid === auth?.currentUser?.uid
+              ) {
+                pastSearches.push({
+                  id: element.doc.id,
+                  ...element.doc.data(),
+                  createdOn: new Date(
+                    element.doc.data().createdOn.seconds * 1000
+                  ).toLocaleString(),
+                });
+              }
+            });
+
+            setSearchHistory((prevState) => [...prevState, ...pastSearches]);
+          });
+      }
+    };
+
     if (!loading && data) {
       console.log(data.user[0].searchHistory);
       updateSearchHistory(data);
     }
+
+    getSearchFromDB();
+    return () => {
+      isCancelled = true;
+    };
   }, [loading, data]);
 
   const setAddressState = (newAddress: string) => {
