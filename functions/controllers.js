@@ -36,14 +36,10 @@ const getAllUsers = async () => {
         ).toLocaleString(),
       })
     );
-    console.log(users);
+    // console.log(users);
     return users;
   } catch (error) {
     console.log(error);
-    // res.status(500).json({
-    //   status: "error",
-    //   error,
-    // });
     return {
       status: "error",
       error,
@@ -81,14 +77,10 @@ const getSingleUser = async (userId) => {
         searchHistory: [...userSearches],
       },
     ];
-    // res.json(user);
+    // console.log(user);
     return user;
   } catch (error) {
     console.log(error);
-    // res.status(500).json({
-    //   status: "error",
-    //   error,
-    // });
     return {
       status: "error",
       error,
@@ -98,34 +90,24 @@ const getSingleUser = async (userId) => {
 
 const getAllSearches = async () => {
   try {
-    await firestore
+    let pastSearches = [];
+    const snapshot = await firestore
       .collection("searches")
       .orderBy("createdOn", "desc")
-      .onSnapshot((snapshot) => {
-        let pastSearches = [];
-        snapshot.docChanges().forEach((element) => {
-          if (element.type === "added") {
-            pastSearches.push({
-              id: element.doc.id,
-              address: element.doc.data().address,
-              searchType: element.doc.data().searchType,
-              radius: element.doc.data().radius,
-              ...element.doc.data(),
-              createdOn: new Date(
-                element.doc.data().createdOn.seconds * 1000
-              ).toLocaleString(),
-            });
-          }
-        });
-        // res.json(pastSearches);
-        return pastSearches;
+      .get();
+    snapshot.forEach((doc) => {
+      pastSearches.push({
+        id: doc.id,
+        ...doc.data(),
+        createdOn: new Date(
+          doc.data().createdOn.seconds * 1000
+        ).toLocaleString(),
       });
+    });
+    // console.log(pastSearches);
+    return pastSearches;
   } catch (error) {
     console.log(error);
-    // res.status(500).json({
-    //   status: "error",
-    //   error,
-    // });
     return {
       status: "error",
       error,
@@ -133,36 +115,35 @@ const getAllSearches = async () => {
   }
 };
 
-const addSearchToDB = async (req, res) => {
-  // const {
-  //   address,
-  //   searchType,
-  //   radius,
-  //   createdOn,
-  //   user: { uid, displayName, email, photoURL },
-  // } = req.body;
+const addSearchToDB = async (search) => {
   try {
     // Using the add method, firestore automatically generates a Document ID
-    const docRef = await firestore.collection("searches").add(req.body);
+    const docRef = await firestore.collection("searches").add(search);
     // After adding a new document, get the newly added document with ID
     const snapshot = await firestore.doc(`searches/${docRef.id}`).get();
-    const newSearch = [{ id: snapshot.id, ...snapshot.data() }];
-    res.json(newSearch);
+    const newSearch = [
+      {
+        id: snapshot.id,
+        ...snapshot.data(),
+        createdOn: new Date(
+          snapshot.data().createdOn.seconds * 1000
+        ).toLocaleString(),
+      },
+    ];
+    // console.log(newSearch);
+    return newSearch;
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return {
       status: "error",
       error,
-    });
+    };
   }
 };
-
-const addNewUser = (req, res) => {};
 
 module.exports = {
   getAllSearches,
   getAllUsers,
   getSingleUser,
   addSearchToDB,
-  addNewUser,
 };
