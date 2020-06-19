@@ -24,7 +24,7 @@ const Signup = () => {
   const [error, setError] = useState(null);
 
   const context = useContext(UserContext);
-  const { isSignedIn } = context;
+  const { isSignedIn, setUser } = context;
 
   const handleSubmit = async (values: any) => {
     setLoading(true);
@@ -37,6 +37,7 @@ const Signup = () => {
       );
       createUserDocument(user, { fullname });
       isSignedIn(true);
+      setUser(user);
       setLoading(false);
     } catch (error) {
       console.log(error);

@@ -2,6 +2,7 @@
   "name": "react-maps-tutorial",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://us-central1-enye-d35c3.cloudfunctions.net/api",
   "dependencies": {
     "@ant-design/css-animation": "^1.7.2",
     "@ant-design/icons": "^4.2.1",

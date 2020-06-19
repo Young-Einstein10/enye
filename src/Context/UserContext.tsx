@@ -5,6 +5,8 @@ import React, {
   FunctionComponent,
 } from "react";
 import { auth } from "../utils/Firebase";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { createUserDocument, collectIdsAndData } from "../utils/utilities";
 import { useHistory } from "react-router-dom";
 
@@ -21,6 +23,7 @@ interface ContextProps {
   userState: UserState;
   onLogout: () => void;
   isSignedIn: (action: boolean) => void;
+  setUser: (user: any) => void;
 }
 
 export const UserContext = createContext<ContextProps>({
@@ -30,7 +33,10 @@ export const UserContext = createContext<ContextProps>({
   },
   onLogout: () => {},
   isSignedIn: (action: boolean) => {},
+  setUser: (user: any) => {},
 });
+
+const antIcon = <LoadingOutlined style={{ fontSize: 50 }} spin />;
 
 const UserProvider: FunctionComponent = ({ children }: Props) => {
   const [userState, setUserState] = useState<UserState>({
@@ -69,15 +75,26 @@ const UserProvider: FunctionComponent = ({ children }: Props) => {
   const isSignedIn = (action: boolean) => {
     if (action === true) {
       setSignedIn(true);
-      history.push("/main");
     } else {
       setSignedIn(false);
       history.push("/signin");
     }
   };
 
+  const setUser = (user: any) => {
+    setUserState((userState) => ({ ...userState, user, loaded: true }));
+    history.push("/main");
+  };
+
   const onLogout = () => {
     setUserState({ ...userState, loaded: false, user: null });
+  };
+
+  const spinnerStyles = {
+    display: "flex",
+    justifyContent: "center",
+    height: "100vh",
+    alignItems: "center",
   };
 
   return (
@@ -86,9 +103,16 @@ const UserProvider: FunctionComponent = ({ children }: Props) => {
         userState,
         onLogout,
         isSignedIn,
+        setUser,
       }}
     >
-      {isLoading ? <p>Loading App....</p> : children}
+      {isLoading ? (
+        <div style={spinnerStyles}>
+          <Spin indicator={antIcon} />
+        </div>
+      ) : (
+        children
+      )}
     </UserContext.Provider>
   );
 };

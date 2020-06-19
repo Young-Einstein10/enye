@@ -21,6 +21,7 @@ const Signin = () => {
   const {
     userState: { loaded },
     isSignedIn,
+    setUser,
   } = context;
 
   let history = useHistory();
@@ -32,14 +33,12 @@ const Signin = () => {
   }, [history, loaded]);
 
   const handleSubmit = async (values: any) => {
-    console.log("Success:", values);
     setLoading(true);
     const { email, password } = values;
 
     try {
       const { user } = await auth.signInWithEmailAndPassword(email, password);
-      console.log(user?.uid);
-      // history.push("/main");
+      setUser(user);
       isSignedIn(true);
       setLoading(false);
     } catch (error) {

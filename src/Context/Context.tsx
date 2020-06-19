@@ -1,14 +1,14 @@
 import * as React from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { API_KEY } from "../utils/config";
-import { firestore } from "../utils/Firebase";
+// import { firestore } from "../utils/Firebase";
 import { auth } from "../utils/Firebase";
 import axios from "axios";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
 const GetUserDetailsQuery = gql`
-  query GetUserDetails($id: String!) {
+  query GetUserDetails($id: ID!) {
     user(id: $id) {
       id
       fullname
@@ -19,6 +19,32 @@ const GetUserDetailsQuery = gql`
         searchType
         radius
         createdOn
+      }
+    }
+  }
+`;
+
+const ADD_NEW_SEARCH = gql`
+  mutation addNewSearch(
+    $address: String!
+    $radius: Int!
+    $searchType: String!
+    $user: UserSearchType
+  ) {
+    addNewSearch(
+      address: $address
+      radius: $radius
+      searchType: $searchType
+      user: $user
+    ) {
+      id
+      address
+      radius
+      searchType
+      createdOn
+      user {
+        uid
+        email
       }
     }
   }
@@ -43,6 +69,7 @@ interface ContextProps {
   // nextPageToken: string;
   hospitalData: HospitalData[];
   searchHistory: SearchHistory[];
+  searchLoader: boolean;
   showLoader: (action: boolean) => void;
   radius: number;
   setGeoRadius: (value: number) => void;
@@ -60,6 +87,7 @@ const locationContext = React.createContext<ContextProps>({
   hospitalData: [],
   searchHistory: [],
   showLoader: (action: boolean) => {},
+  searchLoader: false,
   radius: 1500,
   setGeoRadius: (value: number) => {},
   // setError: ,
@@ -105,6 +133,7 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
   const [hospitalData, setHospitalData] = React.useState<HospitalData[]>([]);
   const [searchHistory, setSearchHistory] = React.useState<SearchHistory[]>([]);
   const [loader, setLoader] = React.useState<boolean>(false);
+  const [searchLoader, setSearchLoader] = React.useState<boolean>(false);
   const [error, setError] = React.useState<any | null>(null);
 
   const updateSearchHistory = (data: any) => {
@@ -114,56 +143,39 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
     ]);
   };
 
-  const { loading, data } = useQuery(GetUserDetailsQuery, {
+  const [
+    addNewSearch,
+    { data: searchData, loading: mutationLoading, error: mutationError },
+  ] = useMutation(ADD_NEW_SEARCH);
+
+  const { loading, data: queryData } = useQuery(GetUserDetailsQuery, {
     variables: { id: auth?.currentUser?.uid },
   });
 
-  // React.useEffect(() => {
-  //   if (!loading && data) {
-  //     console.log(data.user[0].searchHistory);
-  //     updateSearchHistory(data);
-  //   }
-  // }, [loading, data]);
-
   React.useEffect(() => {
-    let isCancelled = false;
-    const getSearchFromDB = async () => {
-      if (!isCancelled) {
-        firestore
-          .collection("searches")
-          .orderBy("createdOn", "desc")
-          .onSnapshot((snapshot) => {
-            let pastSearches: any[] = [];
-            snapshot.docChanges().forEach((element) => {
-              if (
-                element.type === "added" &&
-                element.doc.data().user.uid === auth?.currentUser?.uid
-              ) {
-                pastSearches.push({
-                  id: element.doc.id,
-                  ...element.doc.data(),
-                  createdOn: new Date(
-                    element.doc.data().createdOn.seconds * 1000
-                  ).toLocaleString(),
-                });
-              }
-            });
-
-            setSearchHistory((prevState) => [...prevState, ...pastSearches]);
-          });
-      }
-    };
-
-    if (!loading && data) {
-      console.log(data.user[0].searchHistory);
-      updateSearchHistory(data);
+    if (searchData) {
+      setSearchHistory((prevState) => [
+        ...prevState,
+        searchData.addNewSearch[0],
+      ]);
+      // console.log(searchData.addNewSearch[0]);
     }
 
-    getSearchFromDB();
-    return () => {
-      isCancelled = true;
-    };
-  }, [loading, data]);
+    if (mutationError) {
+      setError(mutationError);
+    }
+
+    if (mutationLoading) {
+      setSearchLoader(mutationLoading);
+    }
+  }, [mutationLoading, mutationError, searchData]);
+
+  React.useEffect(() => {
+    if (!loading && queryData) {
+      // console.log(queryData.user[0].searchHistory);
+      updateSearchHistory(queryData);
+    }
+  }, [loading, queryData]);
 
   const setAddressState = (newAddress: string) => {
     setAddress(newAddress);
@@ -227,17 +239,15 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
           const { uid, email } = auth.currentUser || {};
 
           setHospitalData([...data.results]);
-          let newSearch = {
-            address,
-            searchType,
-            radius,
-            createdOn: new Date(),
-            user: {
-              uid,
-              email,
+
+          addNewSearch({
+            variables: {
+              address,
+              searchType,
+              radius,
+              user: { uid, email },
             },
-          };
-          addSearchToDB(newSearch);
+          });
         }
 
         if (data.status === "ZERO_RESULTS") {
@@ -279,17 +289,6 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
     }
   };
 
-  const addSearchToDB = async (search: {}) => {
-    try {
-      const docRef = await firestore.collection("searches").add(search);
-      const doc = await docRef.id;
-      console.log(doc);
-    } catch (error) {
-      console.log(error);
-      setError(error.message);
-    }
-  };
-
   return (
     <locationContext.Provider
       value={{
@@ -299,6 +298,7 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
         hospitalData,
         searchHistory,
         showLoader,
+        searchLoader,
         radius,
         setGeoRadius,
         findHospital,
