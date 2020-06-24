@@ -5,11 +5,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const ctrl = require("./controllers");
 
-const app = express();
-
-app.use(bodyParser.json());
-app.use(cors());
-
 const typeDefs = gql`
   type User {
     id: ID!
@@ -82,18 +77,27 @@ const resolvers = {
   },
 };
 
-// Pass schema definition and resolvers to the
-// ApolloServer constructor
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
+const createGraphQLServer = () => {
+  const app = express();
 
-// Launch the server
-server.applyMiddleware({ app, path: "/", cors: true });
+  app.use(bodyParser.json());
+  app.use(cors());
 
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-);
+  // Pass schema definition and resolvers to the
+  // ApolloServer constructor
+  const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
+    introspection: true,
+    playground: true,
+  });
 
-exports.api = functions.https.onRequest(app);
+  // Launch the server
+  apolloServer.applyMiddleware({ app, path: "/", cors: true });
+
+  return app;
+};
+
+const server = createGraphQLServer();
+
+exports.api = functions.https.onRequest(server);
