@@ -4,27 +4,12 @@ import React, {
   useEffect,
   FunctionComponent,
 } from "react";
-import { auth } from "../utils/Firebase";
+import { auth } from "../../utils/Firebase";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import { createUserDocument, collectIdsAndData } from "../utils/utilities";
+import { createUserDocument, collectIdsAndData } from "../../utils/utilities";
 import { useHistory } from "react-router-dom";
-
-type Props = {
-  children?: React.ReactNode;
-};
-
-type UserState = {
-  user: null;
-  loaded: boolean;
-};
-
-interface ContextProps {
-  userState: UserState;
-  onLogout: () => void;
-  isSignedIn: (action: boolean) => void;
-  setUser: (user: any) => void;
-}
+import { ContextProps, UserState } from "./types";
 
 export const UserContext = createContext<ContextProps>({
   userState: {
@@ -38,7 +23,7 @@ export const UserContext = createContext<ContextProps>({
 
 const antIcon = <LoadingOutlined style={{ fontSize: 50 }} spin />;
 
-const UserProvider: FunctionComponent = ({ children }: Props) => {
+const UserProvider: FunctionComponent = ({ children }) => {
   const [userState, setUserState] = useState<UserState>({
     user: null,
     loaded: false,

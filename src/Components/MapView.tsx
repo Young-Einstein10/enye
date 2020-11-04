@@ -6,7 +6,7 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import mapStyles from "../mapStyles";
-import locationContext from "../Context/Context";
+import locationContext from "../Context/location/Context";
 
 import { API_KEY } from "../utils/config";
 

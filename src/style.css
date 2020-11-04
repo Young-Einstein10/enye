@@ -34,10 +34,17 @@
   display: none;
 }
 
+.signin_form, .signup_form {
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
 @media screen and (max-width: 768px) {
-  .hide-sidenav {
+  /* .hide-sidenav {
     display: none;
-  }
+  } */
 
   .menu-btn {
     display: block;

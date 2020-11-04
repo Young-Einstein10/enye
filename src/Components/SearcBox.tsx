@@ -1,7 +1,7 @@
 import React, { useContext, FunctionComponent } from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
-import locationContext from "../Context/Context";
-import ModalContext from "../Context/ModalContext";
+import locationContext from "../Context/location/Context";
+import ModalContext from "../Context/modal/ModalContext";
 import usePlacesAutoComplete from "use-places-autocomplete";
 import { AutoComplete } from "antd";
 import { Select, Button, Modal, Table } from "antd";
@@ -36,7 +36,6 @@ type Props = {
 };
 
 const Search: FunctionComponent<Props> = (props) => {
-  const context = useContext(locationContext);
   const {
     setGeoRadius,
     searchHistory,
@@ -47,10 +46,9 @@ const Search: FunctionComponent<Props> = (props) => {
     setError,
     setLocationCoords,
     geocodeAddress,
-  } = context;
+  } = useContext(locationContext);
 
-  const modalContext = useContext(ModalContext);
-  const { isVisible, closeModal, showModal } = modalContext;
+  const { isVisible, closeModal, showModal } = useContext(ModalContext);
 
   let tabkey = 1;
   const searchData = searchHistory?.map((search) => {

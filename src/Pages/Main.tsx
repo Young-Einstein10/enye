@@ -1,13 +1,12 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import SearchBox from "../Components/SearcBox";
 import ListView from "../Components/ListView";
 import MapView from "../Components/MapView";
-import { LocationProvider } from "../Context/Context";
-import { ModalProvider } from "../Context/ModalContext";
+import { LocationProvider } from "../Context/location/Context";
+import { ModalProvider } from "../Context/modal/ModalContext";
 import { API_KEY } from "../utils/config";
-import { Tabs, Typography, Layout, Drawer, Button } from "antd";
-import { MenuUnfoldOutlined } from "@ant-design/icons";
+import { Tabs, Typography, Layout } from "antd";
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -15,16 +14,6 @@ const { TabPane } = Tabs;
 const libraries = ["places"];
 
 const Main: FunctionComponent = () => {
-  const [visible, setVisible] = useState(false);
-
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onClose = () => {
-    setVisible(false);
-  };
-
   return (
     <LoadScript googleMapsApiKey={API_KEY} libraries={libraries}>
       <LocationProvider>
@@ -32,12 +21,11 @@ const Main: FunctionComponent = () => {
           <Layout style={{ height: "calc(100vh - 60px)" }}>
             <Sider
               width={350}
-              collapsible={true}
-              collapsedWidth={50}
+              breakpoint="md"
+              collapsedWidth="0"
               theme="dark"
               className="hide-sidenav"
               style={{ background: "#0e153a" }}
-              trigger={null}
             >
               <header
                 style={{
@@ -60,23 +48,6 @@ const Main: FunctionComponent = () => {
               </header>
               <SearchBox style={{ padding: "0 20px", marginTop: "50px" }} />
             </Sider>
-
-            <>
-              <Button className="menu-btn" type="primary" onClick={showDrawer}>
-                <MenuUnfoldOutlined style={{ fontSize: "20px" }} />
-              </Button>
-              <Drawer
-                title="Hospitals Nearby."
-                placement="left"
-                closable={false}
-                width={350}
-                onClose={onClose}
-                visible={visible}
-                bodyStyle={{ background: "#0e153a" }}
-              >
-                <SearchBox style={{ padding: "0 0px", marginTop: "50px" }} />
-              </Drawer>
-            </>
 
             <Layout>
               <Content style={{ padding: "0 30px", height: "100vh" }}>

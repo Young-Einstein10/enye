@@ -1,87 +1,20 @@
 import * as React from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
-import { API_KEY } from "../utils/config";
+import { API_KEY } from "../../utils/config";
 // import { firestore } from "../utils/Firebase";
-import { auth } from "../utils/Firebase";
+import { auth } from "../../utils/Firebase";
 import axios from "axios";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import {
+  ContextProps,
+  Coords,
+  HospitalData,
+  Props,
+  SearchHistory,
+} from "./types";
+import { ADD_NEW_SEARCH, GetUserDetailsQuery } from "./queries";
 
-const GetUserDetailsQuery = gql`
-  query GetUserDetails($id: ID!) {
-    user(id: $id) {
-      id
-      fullname
-      email
-      searchHistory {
-        id
-        address
-        searchType
-        radius
-        createdOn
-      }
-    }
-  }
-`;
-
-const ADD_NEW_SEARCH = gql`
-  mutation addNewSearch(
-    $address: String!
-    $radius: Int!
-    $searchType: String!
-    $user: UserSearchType
-  ) {
-    addNewSearch(
-      address: $address
-      radius: $radius
-      searchType: $searchType
-      user: $user
-    ) {
-      id
-      address
-      radius
-      searchType
-      createdOn
-      user {
-        uid
-        email
-      }
-    }
-  }
-`;
-
-type Props = {
-  children?: React.ReactNode;
-};
-
-type Coords = {
-  lat: number;
-  lng: number;
-};
-
-type Location = {
-  location?: Coords | null;
-};
-
-interface ContextProps {
-  loader: boolean;
-  error: any;
-  // nextPageToken: string;
-  hospitalData: HospitalData[];
-  searchHistory: SearchHistory[];
-  searchLoader: boolean;
-  showLoader: (action: boolean) => void;
-  radius: number;
-  setGeoRadius: (value: number) => void;
-  setError?: any;
-  setLocationCoords: (lat: number, lng: number) => void;
-  setType: (value: string) => void;
-  findHospital: (lat: number, lng: number, address: string) => void;
-  setAddressState: (newAddress: string) => void;
-  geocodeAddress: () => void;
-}
-
-const locationContext = React.createContext<ContextProps>({
+export const locationContext = React.createContext<ContextProps>({
   loader: false,
   error: null,
   hospitalData: [],
@@ -99,28 +32,6 @@ const locationContext = React.createContext<ContextProps>({
 });
 
 const proxy_url: string = "https://cors-anywhere.herokuapp.com";
-interface HospitalData {
-  id: string;
-  rating: number | null;
-  name: string;
-  icon?: string;
-  vicinity: string | any;
-  business_status: string;
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-}
-
-interface SearchHistory {
-  id: string;
-  address: string;
-  searchType: string;
-  radius: number;
-  createdOn: Date;
-}
 
 const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
   const [coordinates, setCoordinates] = React.useState<Coords>({
@@ -314,6 +225,4 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
   );
 };
 
-export default locationContext;
-
-export { LocationProvider };
+export default LocationProvider;
