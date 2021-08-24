@@ -98,7 +98,9 @@ const locationContext = React.createContext<ContextProps>({
   geocodeAddress: () => {},
 });
 
-const proxy_url: string = "https://cors-anywhere.herokuapp.com";
+const isProd = process.env.NODE_ENV === "production" ? "https://maps.googleapis.com/" : "/googleapi/"
+
+// const proxy_url: string = "https://cors-anywhere.herokuapp.com";
 interface HospitalData {
   id: string;
   rating: number | null;
@@ -224,7 +226,7 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
   const findHospital = async (lat: number, lng: number, address: string) => {
     try {
       if (lat && lng) {
-        const req_url: string = `${proxy_url}/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
+        const req_url: string = `${isProd}maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
           searchType
         )}&keyword=${formatType(searchType)}&key=${API_KEY}`;
         const { data } = await axios.get(req_url, {

@@ -3,8 +3,7 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 import locationContext from "../Context/location/Context";
 import ModalContext from "../Context/modal/ModalContext";
 import usePlacesAutoComplete from "use-places-autocomplete";
-import { AutoComplete } from "antd";
-import { Select, Button, Modal, Table } from "antd";
+import { Select, Button, Modal, Table, AutoComplete } from "antd";
 
 const { Option } = AutoComplete;
 
@@ -119,6 +118,7 @@ const Search: FunctionComponent<Props> = (props) => {
               </Option>
             ))}
         </AutoComplete>
+
         <Select
           defaultValue="Select a geo-fencing radius"
           style={{ width: 300, margin: "15px 0" }}

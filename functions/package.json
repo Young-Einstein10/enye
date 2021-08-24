@@ -10,7 +10,7 @@
     "dev:server": "nodemon index.js"
   },
   "engines": {
-    "node": "8"
+    "node": "12"
   },
   "dependencies": {
     "apollo-server-express": "^2.15.0",
