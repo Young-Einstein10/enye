@@ -1,4 +1,4 @@
-import LocationProvider from "./Location";
-import { locationContext } from "./Location";
+import { LocationProvider } from "./Context";
+import locationContext from "./Context";
 
 export { LocationProvider, locationContext };

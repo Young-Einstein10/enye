@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { Button } from "antd";
 import { Link } from "react-router-dom";
 import { signOut } from "../utils/Firebase";
-import { Button } from "antd";
 import { UserContext } from "../Context/auth";
 
 const Navigation = () => {
@@ -27,7 +27,7 @@ const SignedinNav = () => {
   return (
     <nav className="nav">
       <div className="logo">
-        <h2>
+        <h2 style={{ marginBottom: 0 }}>
           <Link to="/">Hospitals Nearby</Link>
         </h2>
       </div>
@@ -45,7 +45,7 @@ const SignedoutNav = () => {
   return (
     <nav className="nav">
       <div className="logo">
-        <h2>
+        <h2 style={{ marginBottom: 0 }}>
           <Link to="/">Hospitals Nearby</Link>
         </h2>
       </div>
