@@ -2,8 +2,11 @@ const functions = require("firebase-functions");
 const { ApolloServer, gql } = require("apollo-server-express");
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 const ctrl = require("./controllers");
+
+// Configuration
+const API_SERVICE_URL = "https://maps.googleapis.com";
 
 const typeDefs = gql`
   type User {
@@ -80,11 +83,21 @@ const resolvers = {
 const createGraphQLServer = () => {
   const app = express();
 
-  app.use(bodyParser.json());
   app.use(cors());
 
-  // Pass schema definition and resolvers to the
-  // ApolloServer constructor
+  // Proxy endpoints
+  app.use(
+    "/googleapi",
+    createProxyMiddleware({
+      target: API_SERVICE_URL,
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/googleapi`]: "",
+      },
+    })
+  );
+
+  // Pass schema definition and resolvers to the ApolloServer constructor
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,

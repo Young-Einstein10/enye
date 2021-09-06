@@ -15,7 +15,7 @@ const style: React.CSSProperties = { height: "100vh" };
 
 // apollo client setup
 const client = new ApolloClient({
-  uri: "https://us-central1-enye-d35c3.cloudfunctions.net/api/graphql",
+  uri: `${process.env.REACT_APP_BASE_URL}/graphql`,
 });
 
 const App: FunctionComponent = () => {

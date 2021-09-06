@@ -5,7 +5,7 @@ import { auth } from "../../utils/Firebase";
 import axios from "axios";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { ADD_NEW_SEARCH, GetUserDetailsQuery } from "./queries";
-import { ContextProps, Coords } from "./types";
+import { ContextProps, Coords, HospitalData, SearchHistory } from "./types";
 
 const locationContext = React.createContext<ContextProps>({
   loader: false,
@@ -24,32 +24,12 @@ const locationContext = React.createContext<ContextProps>({
   geocodeAddress: () => {},
 });
 
-const isProd =
-  process.env.NODE_ENV === "production"
-    ? "https://maps.googleapis.com/"
-    : "/googleapi/";
-interface HospitalData {
-  id: string;
-  rating: number | null;
-  name: string;
-  icon?: string;
-  vicinity: string | any;
-  business_status: string;
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-}
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-interface SearchHistory {
-  id: string;
-  address: string;
-  searchType: string;
-  radius: number;
-  createdOn: Date;
-}
+// const isProd =
+//   process.env.NODE_ENV === "production"
+//     ? "https://maps.googleapis.com/"
+//     : "/googleapi/";
 
 const LocationProvider: React.FunctionComponent = ({ children }) => {
   const [coordinates, setCoordinates] = React.useState<Coords>({
@@ -142,9 +122,10 @@ const LocationProvider: React.FunctionComponent = ({ children }) => {
   const findHospital = async (lat: number, lng: number, address: string) => {
     try {
       if (lat && lng) {
-        const req_url: string = `${isProd}maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
+        const req_url: string = `${BASE_URL}/googleapi/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
           searchType
         )}&keyword=${formatType(searchType)}&key=${API_KEY}`;
+
         const { data } = await axios.get(req_url, {
           headers: {},
         });
