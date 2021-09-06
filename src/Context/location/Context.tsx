@@ -145,7 +145,9 @@ const LocationProvider: React.FunctionComponent = ({ children }) => {
         const req_url: string = `${isProd}maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
           searchType
         )}&keyword=${formatType(searchType)}&key=${API_KEY}`;
-        const { data } = await axios.get(req_url);
+        const { data } = await axios.get(req_url, {
+          headers: {},
+        });
 
         if (data.status === "OK") {
           // setAddressState("");
