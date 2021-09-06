@@ -1,85 +1,11 @@
 import * as React from "react";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { API_KEY } from "../../utils/config";
-// import { firestore } from "../utils/Firebase";
 import { auth } from "../../utils/Firebase";
 import axios from "axios";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
-
-const GetUserDetailsQuery = gql`
-  query GetUserDetails($id: ID!) {
-    user(id: $id) {
-      id
-      fullname
-      email
-      searchHistory {
-        id
-        address
-        searchType
-        radius
-        createdOn
-      }
-    }
-  }
-`;
-
-const ADD_NEW_SEARCH = gql`
-  mutation addNewSearch(
-    $address: String!
-    $radius: Int!
-    $searchType: String!
-    $user: UserSearchType
-  ) {
-    addNewSearch(
-      address: $address
-      radius: $radius
-      searchType: $searchType
-      user: $user
-    ) {
-      id
-      address
-      radius
-      searchType
-      createdOn
-      user {
-        uid
-        email
-      }
-    }
-  }
-`;
-
-type Props = {
-  children?: React.ReactNode;
-};
-
-type Coords = {
-  lat: number;
-  lng: number;
-};
-
-type Location = {
-  location?: Coords | null;
-};
-
-interface ContextProps {
-  loader: boolean;
-  error: any;
-  // nextPageToken: string;
-  hospitalData: HospitalData[];
-  searchHistory: SearchHistory[];
-  searchLoader: boolean;
-  showLoader: (action: boolean) => void;
-  radius: number;
-  setGeoRadius: (value: number) => void;
-  setError?: any;
-  setLocationCoords: (lat: number, lng: number) => void;
-  setType: (value: string) => void;
-  findHospital: (lat: number, lng: number, address: string) => void;
-  setAddressState: (newAddress: string) => void;
-  geocodeAddress: () => void;
-}
+import { ADD_NEW_SEARCH, GetUserDetailsQuery } from "./queries";
+import { ContextProps, Coords } from "./types";
 
 const locationContext = React.createContext<ContextProps>({
   loader: false,
@@ -125,7 +51,7 @@ interface SearchHistory {
   createdOn: Date;
 }
 
-const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
+const LocationProvider: React.FunctionComponent = ({ children }) => {
   const [coordinates, setCoordinates] = React.useState<Coords>({
     lat: 0,
     lng: 0,
@@ -219,11 +145,7 @@ const LocationProvider: React.FunctionComponent = ({ children }: Props) => {
         const req_url: string = `${isProd}maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${formatType(
           searchType
         )}&keyword=${formatType(searchType)}&key=${API_KEY}`;
-        const { data } = await axios.get(req_url, {
-          headers: {
-            origin: null,
-          },
-        });
+        const { data } = await axios.get(req_url);
 
         if (data.status === "OK") {
           // setAddressState("");
